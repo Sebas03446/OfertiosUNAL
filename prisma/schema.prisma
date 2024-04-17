@@ -1,0 +1,51 @@
+datasource db {
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model departamento {
+  departamento_id Int    @id @default(autoincrement())
+  nombre          String @db.VarChar(255)
+  gobernante_id   Int?   @unique
+}
+
+model dependiente {
+  cabeza_familia_id Int
+  dependiente_id    Int
+
+  @@id([cabeza_familia_id, dependiente_id])
+}
+
+model municipio {
+  municipio_id       Int    @id @default(autoincrement())
+  nombre             String @db.VarChar(255)
+  poblacion_estimada Int?
+  departamento_id    Int
+  gobernante_id      Int?   @unique
+}
+
+model persona {
+  persona_id             Int    @id @default(autoincrement())
+  nombre                 String @db.VarChar(255)
+  edad                   Int?
+  residencia_vivienda_id Int?
+}
+
+model propiedad {
+  persona_id  Int
+  vivienda_id Int
+
+  @@id([persona_id, vivienda_id])
+}
+
+model vivienda {
+  vivienda_id  Int    @id @default(autoincrement())
+  direccion    String @db.VarChar(255)
+  tipo         String @db.VarChar(255)
+  municipio_id Int
+}

@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "pnpm add prisma --save-dev && nuxt prepare && prisma generate"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^1.0.3",
+    "@nuxtjs/supabase": "^1.2.0",
+    "@nuxtjs/tailwindcss": "^6.11.4",
+    "@prisma/client": "^5.12.1",
+    "autoprefixer": "^10.4.19",
+    "nuxt": "^3.8.2",
+    "postcss": "^8.4.38",
+    "prisma": "^5.12.1",
+    "sass": "^1.75.0",
+    "vue": "^3.3.8",
+    "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.42.0"
+  }
+}
