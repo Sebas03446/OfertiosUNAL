@@ -1,3 +1,38 @@
+<script >
+
+export default {
+ 
+
+  name: "LoginComponent",
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  computed: {
+    isValidEmail() {
+      let re =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(this.email.toLowerCase());
+    },
+  },
+  methods: {
+    async login() {
+      const data = {
+        email: this.email,
+        password: this.password,
+      };
+    const response = await useFetch('/api/login', {method :'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)})
+    const responseData =  response.data.value 
+    console.log(responseData)
+},
+    closeLoginModal() {
+      this.$emit("close-login-menu");
+    },
+  },
+};
+</script>
 <template>
   <div class="bg-white rounded-lg shadow-lg p-8 m-4 w-96 mx-auto">
     <div class="button-container flex justify-end">
@@ -72,36 +107,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "LoginComponent",
-  data() {
-    return {
-      email: "",
-      password: "",
-    };
-  },
-  computed: {
-    isValidEmail() {
-      let re =
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(this.email.toLowerCase());
-    },
-  },
-  methods: {
-    login() {
-      let data = {
-        email: this.email,
-        password: this.password,
-      };
-      
-      // To do: Implement login logic
-    },
-    closeLoginModal() {
-      this.$emit("close-login-menu");
-    },
-  },
-};
-</script>
+
 
 <style lang="scss" scoped></style>
