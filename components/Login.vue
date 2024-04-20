@@ -5,6 +5,7 @@ const router = useRouter();
 const email = ref("");
 const password = ref("");
 const errorMsg = ref(null);
+const emit = defineEmits(["close-login-menu", "user-logged-in"]);
 
 async function signIn() {
   try {
@@ -14,8 +15,8 @@ async function signIn() {
     });
     
     if (error) throw error;
-    
-    router.push('/about');
+
+    emit("user-logged-in");
   } catch(error) {
     errorMsg.value = error.message;
   }
@@ -27,7 +28,7 @@ function isValidEmail(email) {
 }
 
 function  closeLoginModal() {
-      this.$emit("close-login-menu");
+  emit("close-login-menu");
     }
 
 </script>
@@ -56,5 +57,4 @@ function  closeLoginModal() {
 </template>
 
 <style lang="scss" scoped>
-/* Estilos aquí */
 </style>

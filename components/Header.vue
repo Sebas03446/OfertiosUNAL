@@ -55,11 +55,21 @@
           Registrarse
         </button>
       </div>
+      <div class="flex items-center space-x-4" v-if="isLoogedIn">
+        <button
+          class="hidden sm:block bg-primary text-quaternary px-4 py-2 rounded hover:bg-tertiary transition-colors"
+          @click="logout"
+        >
+          Logout
+        </button>
+      </div>
     </nav>
   </header>
 </template>
 
 <script>
+const client = useSupabaseClient();
+
 export default {
   name: "HeaderComponent",
   props: {
@@ -79,6 +89,10 @@ export default {
     },
     openRegisterMenu() {
       this.$emit("open-register-menu");
+    },
+    logout() {
+      client.auth.signOut();
+      this.$emit("user-logged-out");
     },
   },
 };
