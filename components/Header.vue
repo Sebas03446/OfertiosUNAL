@@ -68,8 +68,6 @@
 </template>
 
 <script>
-const client = useSupabaseClient();
-
 export default {
   name: "HeaderComponent",
   props: {
@@ -91,7 +89,6 @@ export default {
       this.$emit("open-register-menu");
     },
     logout() {
-      client.auth.signOut();
       this.$emit("user-logged-out");
     },
   },

@@ -3,6 +3,9 @@ const isLoginMenuOpen = ref(false);
 const isSignUpMenuOpen = ref(false);
 const isLogged = ref(false);
 
+const client = useSupabaseClient();
+
+
 
 const handleOpenLoginMenu = () => {
   isLoginMenuOpen.value = true;
@@ -24,11 +27,16 @@ const handleUserLoggedIn = () => {
   isLoginMenuOpen.value = false;
   isLogged.value = true;
 };
+
+const handleUserLoggedOut = () => {
+  client.auth.signOut();
+  isLogged.value = false;
+};
 </script>
 
 <template>
   <div :class="{ 'overlay-active': isLoginMenuOpen || isSignUpMenuOpen }" class="flex flex-col min-h-screen">
-    <Header @open-login-menu="handleOpenLoginMenu" @open-register-menu="handleOpenSignUpMenu" :isLoogedIn="isLogged" @user-logged-out="isLogged = false" />
+    <Header @open-login-menu="handleOpenLoginMenu" @open-register-menu="handleOpenSignUpMenu" :isLoogedIn="isLogged" @user-logged-out="handleUserLoggedOut" />
     <Home class="flex-grow" />
     <Footer />
   </div>
