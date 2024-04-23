@@ -10,12 +10,12 @@ export default defineNuxtConfig({
     extendRoutes(routes, resolve) {
       routes.push(
         {
-          name: 'forgot-password',
-          path: '/forgot-password',
-          component: resolve(__dirname, 'pages/forgot-password.vue')
+          name: 'forgotpassword',
+          path: '/forgotpassword',
+          component: resolve(__dirname, 'pages/forgotpassword.vue')
         },
         {
-          name: 'reset-password',
+          name: 'resetpassword',
           path: '/resetpassword/',
           component: resolve(__dirname, 'pages/resetpassword.vue')
         }
@@ -29,9 +29,9 @@ export default defineNuxtConfig({
   router: {
     extendRoutes(routes, resolve) {
       routes.push({
-        name: 'forgot-password',
-        path: '/forgot-password',
-        component: resolve(__dirname, 'pages/forgot-password.vue')
+        name: 'forgotpassword',
+        path: '/forgotpassword',
+        component: resolve(__dirname, 'pages/forgotpassword.vue')
       })
     }
   },
@@ -39,9 +39,9 @@ export default defineNuxtConfig({
     url: process.env.SUPABASE_URL,
     key: process.env.SUPABASE_KEY,
     redirectOptions: {
-      login: '/confirm',
+      login: '/resetpassword/',
       callback: '/confirm',
-      include: ['/forgot-password', '/resetpassword/'],
+      include: ['/forgotpassword', '/resetpassword/'],
       exclude: ['/', '/about', '/members','/auth'],
       cookieRedirect: false,
     
