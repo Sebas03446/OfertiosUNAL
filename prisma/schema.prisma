@@ -1,51 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider     = "postgresql"
   url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
-generator client {
-    provider = "prisma-client-js"
+model alertas_precio {
+  alerta_id      Int      @id @default(autoincrement())
+  usuario_id     Int?
+  producto_id    Int?
+  precio_deseado Decimal? @db.Decimal(10, 2)
+  activa         Boolean?
 }
 
-model departamento {
-  departamento_id Int    @id @default(autoincrement())
-  nombre          String @db.VarChar(255)
-  gobernante_id   Int?   @unique
+model almacenes {
+  almacen_id Int     @id @default(autoincrement())
+  nombre     String? @db.VarChar(255)
+  ubicacion  String? @db.VarChar(255)
 }
 
-model dependiente {
-  cabeza_familia_id Int
-  dependiente_id    Int
-
-  @@id([cabeza_familia_id, dependiente_id])
+model comentarios {
+  comentario_id Int       @id @default(autoincrement())
+  producto_id   Int?
+  usuario_id    Int?
+  texto         String?
+  fecha         DateTime? @db.Timestamp(6)
 }
 
-model municipio {
-  municipio_id       Int    @id @default(autoincrement())
-  nombre             String @db.VarChar(255)
-  poblacion_estimada Int?
-  departamento_id    Int
-  gobernante_id      Int?   @unique
+model precio_producto {
+  precio_id   Int       @id @default(autoincrement())
+  producto_id Int?
+  precio      Decimal?  @db.Decimal(10, 2)
+  fecha       DateTime? @db.Timestamp(6)
+  almacen_id  Int?
 }
 
-model persona {
-  persona_id             Int    @id @default(autoincrement())
-  nombre                 String @db.VarChar(255)
-  edad                   Int?
-  residencia_vivienda_id Int?
+model producto_almacen {
+  producto_almacen_id Int  @id @default(autoincrement())
+  producto_id         Int?
+  almacen_id          Int?
+  stock               Int?
+
+  @@index([almacen_id], map: "idx_almacen")
+  @@index([producto_id], map: "idx_producto")
 }
 
-model propiedad {
-  persona_id  Int
-  vivienda_id Int
-
-  @@id([persona_id, vivienda_id])
+model productos {
+  producto_id  Int      @id @default(autoincrement())
+  nombre       String?  @db.VarChar(255)
+  calificacion Decimal? @db.Decimal
 }
 
-model vivienda {
-  vivienda_id  Int    @id @default(autoincrement())
-  direccion    String @db.VarChar(255)
-  tipo         String @db.VarChar(255)
-  municipio_id Int
+model usuarios {
+  usuario_id    Int      @id @default(autoincrement())
+  nombre        String?  @db.VarChar(255)
+  email         String?  @unique @db.VarChar(255)
+  es_suscriptor Boolean?
 }
