@@ -2,11 +2,10 @@
     <div class="about w-full h-auto">
         <h1 class="text-center text-4xl font-bold m-10">¿Qué es Ofertios?</h1>
         <div class="flex flex-col items-center justify-center flex-wrap">
-            <p class="text-justify m-10 ml-56 w-1/6 mr-64 sm:w-1/2">
+            <p class="text-justify text-2xl m-10 ml-56 w-1/6 mr-64 sm:w-1/2">
             Ofertios es una plataforma que colecciona los precios de productos tecnoógicos de diferentes tiendas y
             los disponibiliza en un solo lugar para que los usuarios puedan comparar y elegir la mejor opción.
             </p>
-            <img src="@/assets/images/about.png" alt="Ofertios" class="m-10 w-1/4 h-1/6 rounded-sm border-black border-2" />
         </div>
         <div class="card-ofertios-container m-10 flex justify-center">
             <Card title="Visión"
