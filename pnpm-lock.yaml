@@ -13,6 +13,9 @@ devDependencies:
   '@nuxt/devtools':
     specifier: ^1.0.3
     version: 1.0.3(nuxt@3.8.2)(vite@4.5.0)
+  '@nuxtjs/google-analytics':
+    specifier: ^2.4.0
+    version: 2.4.0
   '@nuxtjs/supabase':
     specifier: ^1.2.1
     version: 1.2.1
@@ -1522,6 +1525,12 @@ packages:
       - vls
       - vti
       - vue-tsc
+    dev: true
+
+  /@nuxtjs/google-analytics@2.4.0:
+    resolution: {integrity: sha512-rDQTwHIjyjVrx8GywHPuWykJ3jRFGaHl5Iqji/y8tQWUc0yGEeHxOoR0yimzxnTS1Ph2/PubQYpgnVeEPEdL/A==}
+    dependencies:
+      vue-analytics: 5.22.1
     dev: true
 
   /@nuxtjs/supabase@1.2.1:
@@ -7285,6 +7294,11 @@ packages:
 
   /vscode-uri@3.0.8:
     resolution: {integrity: sha512-AyFQ0EVmsOZOlAnxoFOGOq1SQDWAB7C6aqMGS23svWAllfOaxbuFvcT8D1i8z3Gyn8fraVeZNNmN6e9bxxXkKw==}
+    dev: true
+
+  /vue-analytics@5.22.1:
+    resolution: {integrity: sha512-HPKQMN7gfcUqS5SxoO0VxqLRRSPkG1H1FqglsHccz6BatBatNtm/Vyy8brApktZxNCfnAkrSVDpxg3/FNDeOgQ==}
+    deprecated: Sorry but vue-analytics is no longer maintained. I would suggest you switch to vue-gtag, with love, the guy who made the package.
     dev: true
 
   /vue-bundle-renderer@2.0.0:
