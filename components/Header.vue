@@ -27,13 +27,13 @@
         class="hidden sm:flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-4 sm:mt-0 w-full sm:w-auto"
       >
         <li>
-          <a href="#" class="text-quaternary hover:text-tertiary">Inicio</a>
+          <a href="/" class="text-quaternary hover:text-tertiary">Inicio</a>
         </li>
         <li>
           <a href="#" class="text-quaternary hover:text-tertiary">Servicios</a>
         </li>
         <li>
-          <a href="#" class="text-quaternary hover:text-tertiary"
+          <a href="/about" class="text-quaternary hover:text-tertiary"
             >¿Quiénes Somos?</a
           >
         </li>
