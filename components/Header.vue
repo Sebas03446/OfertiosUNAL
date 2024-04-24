@@ -30,15 +30,12 @@
           <a href="/" class="text-quaternary hover:text-tertiary">Inicio</a>
         </li>
         <li>
-          <a href="#" class="text-quaternary hover:text-tertiary">Servicios</a>
+          <a href="/services" class="text-quaternary hover:text-tertiary">Servicios</a>
         </li>
         <li>
           <a href="/about" class="text-quaternary hover:text-tertiary"
             >¿Quiénes Somos?</a
           >
-        </li>
-        <li>
-          <a href="#" class="text-quaternary hover:text-tertiary">Soporte</a>
         </li>
       </ul>
       <div class="flex items-center space-x-4" v-if="!isLoogedIn">
