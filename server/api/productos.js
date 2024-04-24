@@ -8,21 +8,18 @@ export default defineEventHandler(async (event) => {
 
 async function getProductsAndPrices() {
   try {
-    // Fetch the first 50 products
     const productos = await prisma.productos.findMany({
-      take: 50 // Limit the number of products fetched to 50
+      take: 50 
     });
 
-    // Fetch the most recent price for each product
     const productosWithPrices = await Promise.all(
       productos.map(async (producto) => {
         const precio = await prisma.precio_producto.findFirst({
           where: { producto_id: producto.producto_id },
-          orderBy: { fecha: 'desc' }, // Order by fecha in descending order to get the most recent one
+          orderBy: { fecha: 'desc' },
           select: { precio: true, almacen_id: true }
         });
 
-        // Fetch the nombre of the almacen using almacen_id
         let nombreAlmacen = null;
         if (precio && precio.almacen_id) {
           const almacen = await prisma.almacenes.findUnique({
