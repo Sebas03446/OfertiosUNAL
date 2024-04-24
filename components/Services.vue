@@ -8,9 +8,7 @@
 
                     <h3 class="text-3xl text-primary">Compara los productos tecnológicos en distintas tiendas</h3>
                     <p class="text-tertiary text-center text-wrap">
-                        Encuentra las mejores ofertas y compara precios en diversas tiendas para elegir el mejor
-                        producto
-                        tecnológico.
+                        Encuentra las mejores ofertas y compara precios en diversas tiendas para elegir el mejor precio.
                     </p>
                 </div>
             </div>
@@ -20,8 +18,7 @@
                     <h3 class="text-3xl text-primary">Mira el historial de precio del</h3>
                     <p class="text-tertiary text-center">
                         Visualiza el historial de precios para entender las tendencias y aprovechar las ofertas cuando
-                        sean
-                        más favorables.
+                        sean más favorables.
                     </p>
                 </div>
                 <img src="@/assets/images/history.svg" alt="Historial de precios" class="w-1/4 mb-4 border-2 ml-10" />
