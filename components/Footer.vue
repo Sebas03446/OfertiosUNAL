@@ -7,13 +7,8 @@
         <ul class="flex flex-wrap justify-center items-center space-x-4">
           <li><a href="#" class="text-white hover:underline">Ofertios</a></li>
           <li>
-            <a href="#" class="text-white hover:underline"
+            <a href="/conditions" class="text-white hover:underline"
               >Términos y condiciones</a
-            >
-          </li>
-          <li>
-            <a href="#" class="text-white hover:underline"
-              >Política de Privacidad y almacenamiento de datos</a
             >
           </li>
         </ul>
