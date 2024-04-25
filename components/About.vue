@@ -9,7 +9,7 @@
         </div>
         <div class="card-ofertios-container m-10 flex flex-wrap justify-center">
             <Card title="Visión"
-                content="Para el 2027 Ofertios será la principal referencia de los consumidores de tecnología, ofreciendo recomendaciones confiables y actualizadas para tomar la mejor decisión de compra, haciendo más accesible la tecnología para todos."
+                content="Para el 2027 Ofertios será la principal referencia de los consumidores de tecnología, ofreciendo recomendaciones confiables y actualizadas para tomar la mejor decisión de compra."
                 cardClass="bg-white border border-gray-200 rounded-lg shadow-lg transition-all hover:shadow-xl w-1/4 h-auto m-4 p-5 flex flex-col items-center" />
             <Card title="Misión"
                 content="Ofertios facilita la compra inteligente de productos tecnológicos, ofreciendo las mejores ofertas y recomendaciones."
