@@ -9,10 +9,11 @@ const router = useRouter();
 const email = ref("");
 const errorMsg = ref(null);
 const successMsg = ref(null);
+const redirectTo = process.env.OFERTIOS_REDIRECT_TO;
 
 async function resetPassword() {
   try {
-    const { error } = await client.auth.resetPasswordForEmail(email.value, { redirectTo: 'http://localhost:3000/resetpassword/',});
+    const { error } = await client.auth.resetPasswordForEmail(email.value, { redirectTo });
     
 
     if (error) {
