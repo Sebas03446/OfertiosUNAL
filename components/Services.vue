@@ -15,9 +15,9 @@
 
             <div class="flex w-fit justify-center">
                 <div class="service-content flex flex-col">
-                    <h3 class="text-3xl text-primary">Mira el historial de precio del</h3>
+                    <h3 class="text-3xl text-primary">Mira el historial de precio</h3>
                     <p class="text-tertiary text-center">
-                        Visualiza el historial de precios para entender las tendencias y aprovechar las ofertas cuando
+                        Visualiza el historial de precios del producto tecnológico que estas buscando, para entender las tendencias y aprovechar las ofertas cuando
                         sean más favorables.
                     </p>
                 </div>
