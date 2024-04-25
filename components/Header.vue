@@ -4,7 +4,8 @@
       class="container mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center"
     >
       <div class="flex justify-between items-center w-full sm:w-auto">
-        <div class="w-20 h-10 bg-gray-200"></div>
+        <img src="@/assets/icons/logo.svg" alt="Logo" />
+        <span>Ofertios</span>
         <button class="sm:hidden" @click="toggleMenu">
           <svg
             class="w-6 h-6"

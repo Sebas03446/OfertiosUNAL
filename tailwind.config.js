@@ -14,6 +14,10 @@ export default {
       fontFamily: {
         sans: ["AvertaDemo", "sans-serif"],
       },
+      maxHeight: {
+        "1/4": "25%",
+        "1/6": "16.666667%",
+      },
     },
     screens: {
       "sm-max": { max: "640px" },
