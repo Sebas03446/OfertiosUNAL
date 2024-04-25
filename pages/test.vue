@@ -1,14 +1,12 @@
-<script setup> 
-</script>
-
 <template>
     <div>
-        <h1>Auth</h1>
-        <Auth/>
+        <Card />
     </div>
 </template>
 
+<script setup>
 
+</script>
 
 <style lang="scss" scoped>
 

@@ -1,16 +1,14 @@
 <template>
-  <section class="home w-full h-full">
-    <div class="container-home flex justify-center px-4 sm:px-10 md:px-20">
-      <div class="home-content py-20 flex-col">
+  <section class="w-full h-full">
+    <div class="flex px-10 py-0 justify-center">
+      <div class="py-40 flex-col">
         <h2 class="text-4xl">
           <span class="text-quaternary">Realiza tus compras con</span>
-          <span class="text-primary"> Datos</span>
+          <span class="text-primary text-5xl"> Datos</span>
         </h2>
         <p class="text-tertiary mb-4">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to specimen book.
+          Encuentra las mejores ofertas y compara precios en diversas tiendas
+          para elegir el mejor precio.
         </p>
         <div class="social-media flex justify-center">
           <a
@@ -36,8 +34,13 @@
           </a>
         </div>
       </div>
-      <div class="home-image w-2/3 h-96 bg-gray-400"></div>
+      <img
+        src="@/assets/images/Banner.svg"
+        alt="Home"
+        class="max-w-80 sm:w-1/3"
+      />
     </div>
+    
   </section>
 </template>
 
