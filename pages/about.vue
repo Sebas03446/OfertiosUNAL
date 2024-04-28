@@ -1,4 +1,8 @@
 <script setup>
+/* definePageMeta({
+  middleware: ['is-loggin']
+}) */
+
 const isLoginMenuOpen = ref(false);
 const isSignUpMenuOpen = ref(false);
 const isLogged = ref(false);
@@ -25,6 +29,7 @@ const handleCloseSignUpMenu = () => {
 
 const handleUserLoggedIn = () => {
   isLoginMenuOpen.value = false;
+  navigateTo('/products');
   isLogged.value = true;
 };
 

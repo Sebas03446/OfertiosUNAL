@@ -4,9 +4,16 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
-  // Accessing the query parameters directly from event.req
-  const url = new URL(event.req.url, `http://${event.req.headers.host}`);
-  const productoId = parseInt(url.searchParams.get('producto_id'), 10);
+  const query = getQuery(event);
+
+  if (!query || !query.producto_id) {
+    return createError({
+      statusCode: 400,
+      statusMessage: "Invalid request"
+    });
+  }
+
+  const productoId = parseInt(query.producto_id, 10);
 
   if (isNaN(productoId)) {
     return createError({
@@ -20,7 +27,6 @@ export default defineEventHandler(async (event) => {
 
 async function getProductPrices(productoId) {
   try {
-    // Find the product by ID
     const producto = await prisma.productos.findUnique({
       where: { producto_id: productoId },
     });
@@ -32,10 +38,9 @@ async function getProductPrices(productoId) {
       });
     }
 
-    // Find all prices for the product
     const precios = await prisma.precio_producto.findMany({
       where: { producto_id: productoId },
-      orderBy: { fecha: 'desc' }, // Order by fecha in descending order to get the most recent one
+      orderBy: { fecha: 'desc' },
       select: {
         precio: true,
         almacen_id: true,
@@ -50,10 +55,8 @@ async function getProductPrices(productoId) {
       });
     }
 
-    // Filter out prices with the same fecha and almacen_id
     const uniquePrecios = filterUniquePrecios(precios);
 
-    // Return both product and unique prices
     return { producto, precios: uniquePrecios };
   } catch (error) {
     console.error(error);
