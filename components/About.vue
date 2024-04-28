@@ -18,6 +18,7 @@
 
         <h1 class="text-center text-4xl font-bold m-10">Equipo</h1>
         <div class="card-team-container m-10 flex  justify-between">
+
             <Card title="Sebastian French" content="Desarrollador Backend"
                 cardClass="bg-white border border-gray-200 rounded-lg shadow-lg transition-all hover:shadow-xl px-4 py-2 w-1/4 h-1/4 m-4 flex flex-col justify-between">
                 <template #image>
@@ -33,9 +34,22 @@
                     </div>
                 </template>
             </Card>
-            <Card title="David Alexander Rátiva Gutiérrez"
-                cardClass="bg-white border border-gray-200 rounded-lg shadow-lg transition-all hover:shadow-xl w-1/3 h-1/3 m-4" />
 
+            <Card title="David Alexander Rátiva Gutiérrez" content="Desarrollador Backend"
+            cardClass="bg-white border border-gray-200 rounded-lg shadow-lg transition-all hover:shadow-xl px-4 py-2 w-1/4 h-1/4 m-4 flex flex-col justify-between">
+                <template #image>
+                    <img class="mt-4 rounded-sm" src="@/assets/images/david.jpg" alt="Image"
+                        style="max-width: 100%; max-height: 100%;" />
+                </template>
+                <template #footer>
+                    <div class="flex justify-center mt-4">
+                        <a href="http://www.linkedin.com/in/david-alexander-rativa-gutierrez/" class="social-link mr-2 w-10"
+                            target="_blank">
+                            <img src="@/assets/icons/linkedin.svg" alt="Facebook" />
+                        </a>
+                    </div>
+                </template>
+            </Card>
             <Card title="Julián Andrés Córdoba Jaramillo" content = "Desarrollador Backend"
             cardClass="bg-white border border-gray-200 rounded-lg shadow-lg transition-all hover:shadow-xl px-4 py-2 w-1/4 h-1/4 m-4 flex flex-col justify-between">
                 <template #image>
@@ -51,6 +65,7 @@
                     </div>
                 </template>
             </Card>    
+
             <Card title="Hector Hernando Alfonso Hernández"
                 cardClass="bg-white border border-gray-200 rounded-lg shadow-lg transition-all hover:shadow-xl w-1/3 h-1/3 m-4" />
         </div>
