@@ -7,13 +7,23 @@
             los disponibiliza en un solo lugar para que los usuarios puedan comparar y elegir la mejor opción.
             </p>
         </div>
-        <div class="card-ofertios-container m-10 flex flex-wrap justify-center">
-            <Card title="Visión"
-                content="Para el 2027 Ofertios será la principal referencia de los consumidores de tecnología, ofreciendo recomendaciones confiables y actualizadas para tomar la mejor decisión de compra."
-                cardClass="bg-white border border-gray-200 rounded-lg shadow-lg transition-all hover:shadow-xl w-1/4 h-auto m-4 p-5 flex flex-col items-center" />
-            <Card title="Misión"
-                content="Ofertios facilita la compra inteligente de productos tecnológicos, ofreciendo las mejores ofertas y recomendaciones."
-                cardClass="bg-white border border-gray-200 rounded-lg shadow-lg transition-all hover:shadow-xl w-1/4 h-auto m-4 p-5 flex flex-col items-center" />
+    </div> 
+
+    <div class="about w-full h-auto">
+        <h1 class="text-center text-4xl font-bold m-10">Visión</h1>
+        <div class="flex flex-col items-center justify-center flex-wrap">
+            <p class="text-justify text-2xl m-10 ml-56 w-1/6 mr-64 sm:w-1/2">
+                Para el 2027 Ofertios será la principal referencia de los consumidores de tecnología, ofreciendo recomendaciones confiables y actualizadas para tomar la mejor decisión de compra.
+            </p>
+        </div>
+    </div> 
+
+    <div class="about w-full h-auto">
+        <h1 class="text-center text-4xl font-bold m-10">Misión</h1>
+        <div class="flex flex-col items-center justify-center flex-wrap">
+            <p class="text-justify text-2xl m-10 ml-56 w-1/6 mr-64 sm:w-1/2">
+                Ofertios facilita la compra inteligente de productos tecnológicos, ofreciendo las mejores ofertas y recomendaciones.
+            </p>
         </div>
 
         <h1 class="text-center text-4xl font-bold m-10">Equipo</h1>
