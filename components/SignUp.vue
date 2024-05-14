@@ -9,6 +9,7 @@ const confirmPassword = ref('');
 const errorMsg = ref(null);
 const successMsg = ref(null);
 const emit = defineEmits(["close-signup-menu"]);
+const acceptTerms = ref(false);
 
 async function signUp() {
   try {
@@ -57,6 +58,10 @@ function register(event) {
     return;
   }
 
+  if (!acceptTerms.value) {
+    errorMsg.value = "Primero debes aceptar nuestros términos y condiciones.";
+    return;
+  }
   errorMsg.value = null;
 
   signUp();
@@ -90,9 +95,11 @@ function closeSignUpModal() {
           tener entre 6 y 20 caracteres</p>
       </div>
       <div>
-        <input type="password" v-model="confirmPassword" placeholder="Confirmar contraseña" required
-          class="mt-1 w-full h-7 border-2 rounded"
-          :class="{ 'border-red-300 bg-red-50 placeholder-red-200 text-red-900': password !== confirmPassword && confirmPassword.length > 0 }">
+        <input type="password" v-model="confirmPassword" placeholder="Confirmar contraseña" required class="mt-1 w-full h-7 border-2 rounded" :class="{'border-red-300 bg-red-50 placeholder-red-200 text-red-900': password !== confirmPassword && confirmPassword.length > 0}">
+      </div>
+      <div class="flex items-center">
+        <input type="checkbox" v-model="acceptTerms" class="mr-2">
+        <label for="acceptTerms" class="text-sm text-tertiary">Acepto los <router-link to="/conditions" class="text-primary">Términos y Condiciones</router-link></label>
       </div>
       <p v-if="errorMsg" class="text-red-400 text-xs">{{ errorMsg }}</p>
       <p v-if="successMsg" class="text-green-400 text-xs">{{ successMsg }}</p>
