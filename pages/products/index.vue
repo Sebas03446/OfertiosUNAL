@@ -115,13 +115,13 @@ onMounted(() => {
 
 <template>
   <Header @user-logged-out="handleUserLoggedOut" :isLoogedIn="isLogged" />
-  <div v-if="!isAbleHistory" class="flex flex-wrap justify-center m-10">
+  <div class="flex flex-wrap justify-center m-10">
     <CardsProduct v-for="product in paginatedProducts" :key="product.producto_id" :product="product"
       cardClass="cursor-pointer transition-all bg-white border border-gray-200 rounded-lg hover:shadow-lg m-5 w-64 h-96"
       @product-clicked="onProductClicked" />
   </div>
 
-  <div v-if="!isAbleHistory" class="flex justify-center mt-5">
+  <div class="flex justify-center mt-5">
     <button class="mr-2" :disabled="currentPage === 1" @click="currentPage--">
       Anterior
     </button>
@@ -130,7 +130,6 @@ onMounted(() => {
       Siguiente
     </button>
   </div>
-  <HistoryProduct v-if="isAbleHistory" :chartData="chartData" />
 </template>
 
 <style scoped lang="scss">

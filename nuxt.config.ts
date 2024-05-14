@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   routeRules: {
     // prerender index route by default
     '/': { prerender: true },
+    '/products': { prerender: true },
 
   },
   

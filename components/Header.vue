@@ -12,7 +12,7 @@
       </div>
 
       <ul class="hidden sm:flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-4 sm:mt-0 w-full sm:w-auto"
-        v-if="!isLoogedIn">
+        v-if="!isLoggedIn">
         <li>
           <a href="/" class="text-quaternary hover:text-tertiary">Inicio</a>
         </li>
@@ -23,7 +23,7 @@
           <a href="/about" class="text-quaternary hover:text-tertiary">¿Quiénes Somos?</a>
         </li>
       </ul>
-      <div class="flex items-center space-x-4" v-if="!isLoogedIn">
+      <div class="flex items-center space-x-4" v-if="!isLoggedIn">
         <button class="hidden sm:block bg-primary text-quaternary px-4 py-2 rounded hover:bg-tertiary transition-colors"
           @click="openLoginMenu">
           Ingresar
@@ -33,7 +33,7 @@
           Registrarse
         </button>
       </div>
-      <div class="flex items-center space-x-4" v-if="isLoogedIn">
+      <div class="flex items-center space-x-4" v-if="isLoggedIn">
         <button class="hidden sm:block bg-primary text-quaternary px-4 py-2 rounded hover:bg-tertiary transition-colors"
           @click="logout">
           Logout
@@ -47,7 +47,7 @@
 export default {
   name: "HeaderComponent",
   props: {
-    isLoogedIn: Boolean,
+    isLoggedIn: Boolean,
   },
   data() {
     return {
