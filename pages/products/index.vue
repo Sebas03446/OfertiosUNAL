@@ -26,8 +26,7 @@ const paginatedProducts = computed(() => {
 const totalPages = computed(() => Math.ceil(products.value.length / itemsPerPage));
 
 const onProductClicked = async (product) => {
-  await fetchProductHistory(product.producto_id);
-  isAbleHistory.value = true;
+  navigateTo(`/products/${product.producto_id}`);
 };
 
 async function fetchProducts() {
