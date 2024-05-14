@@ -111,5 +111,4 @@ function closeSignUpModal() {
 </template>
 
 <style lang="scss" scoped>
-/* Estilos aquí */
 </style>
