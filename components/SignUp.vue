@@ -99,13 +99,13 @@ function closeSignUpModal() {
       </div>
       <div class="flex items-center">
         <input type="checkbox" v-model="acceptTerms" class="mr-2">
-        <label for="acceptTerms" class="text-sm text-tertiary">Acepto los <router-link to="/conditions" class="text-primary">Términos y Condiciones</router-link></label>
+        <label for="acceptTerms" class="text-sm text-tertiary">Acepto los <router-link to="/conditions" class="text-primary" @click="closeSignUpModal" >Términos y Condiciones</router-link></label>
       </div>
       <p v-if="errorMsg" class="text-red-400 text-xs">{{ errorMsg }}</p>
       <p v-if="successMsg" class="text-green-400 text-xs">{{ successMsg }}</p>
       <button type="submit"
         class="w-full bg-primary hover:bg-secondary focus:ring-4 focus:ring-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white"
-        :disabled="!isValidUsername(username) || !isValidEmail(email) || !isValidPassword(password)">Registrarse</button>
+        :disabled="!isValidUsername(username) || !isValidEmail(email) || !isValidPassword(password) || !acceptTerms " :class="{'bg-gray-300 cursor-not-allowed':!acceptTerms || !isValidUsername(username) || !isValidEmail(email) || !isValidPassword(password)}">Registrarse</button>
     </form>
   </div>
 </template>
