@@ -20,9 +20,12 @@ const handleUserLoggedOut = async () => {
 };
 </script>
 <template>
-  <Header :isLoggedIn="isLogged" @user-logged-out="handleUserLoggedOut" />
-  <div class="flex-grow full-width full-height">
-    <slot />
+  <div :class="{ 'overlay-active': isLoginMenuOpen || isSignUpMenuOpen }" class="flex flex-col min-h-screen">
+    <Header :isLoggedIn="isLogged" @user-logged-out="handleUserLoggedOut" />
+    <div class="flex-grow full-width full-height">
+      <slot />
+    </div>
+    <Footer />
   </div>
-  <Footer />
+    
 </template>

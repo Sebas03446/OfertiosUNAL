@@ -8,6 +8,7 @@ const props = defineProps({
   },
 });
 
+
 onBeforeMount(() => {
   console.log("chartData", props.chartData);
 });
@@ -16,7 +17,9 @@ onBeforeMount(() => {
 
 <template>
   <div class="history-product">
-    <Bar :data="chartData" />
+    <Bar :data="chartData" 
+          :options="{ responsive: true, maintainAspectRatio: false }"
+    />
   </div>
 </template>
 
