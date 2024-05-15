@@ -9,7 +9,11 @@ export default defineEventHandler(async (event) => {
 async function getProductsAndPrices() {
   try {
     const productos = await prisma.productos.findMany({
-      take: 50 
+      select: { 
+        producto_id: true, 
+        nombre: true, 
+        imagen: true 
+      }
     });
 
     const productosWithPrices = await Promise.all(
@@ -17,19 +21,13 @@ async function getProductsAndPrices() {
         const precio = await prisma.precio_producto.findFirst({
           where: { producto_id: producto.producto_id },
           orderBy: { fecha: 'desc' },
-          select: { precio: true, almacen_id: true }
+          select: { precio: true }
         });
 
-        let nombreAlmacen = null;
-        if (precio && precio.almacen_id) {
-          const almacen = await prisma.almacenes.findUnique({
-            where: { almacen_id: precio.almacen_id },
-            select: { nombre: true }
-          });
-          nombreAlmacen = almacen ? almacen.nombre : null;
-        }
-
-        return { ...producto, precio: precio ? precio.precio : null, nombreAlmacen };
+        return { 
+          ...producto, 
+          precio: precio ? precio.precio : null 
+        };
       })
     );
 
