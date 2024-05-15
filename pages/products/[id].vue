@@ -1,6 +1,7 @@
 <script setup>
 definePageMeta({
-  middleware: ['auth']
+  middleware: ['auth', 'is-loggin'],
+  layout: 'products',
 })
 import { ref, computed, onMounted } from "vue";
 
@@ -22,7 +23,7 @@ const isLogged = ref(true);
 const route = useRoute()
 
 async function fetchProductHistory() {
-    console.log("passing here");
+  console.log("passing here");
   const producto_id = route.params.id;
   const response = await useFetch(`/api/historial_producto?producto_id=${producto_id}`, {
     method: "GET",
@@ -38,7 +39,7 @@ async function fetchProductHistory() {
   } else {
     product.value = response.data.value.producto;
     precios.value = response.data.value.precios;
-    
+
 
     console.log(precios.value);
     console.log(product.value);
@@ -60,7 +61,7 @@ async function fetchProductHistory() {
         },
       ],
     };
-  } 
+  }
 };
 
 const handleUserLoggedOut = async () => {
@@ -74,19 +75,18 @@ const handleUserLoggedOut = async () => {
     }
     isLogged.value = false;
     navigateTo('/');
-  }catch(error) {
+  } catch (error) {
     console.error("Error signing out", error);
   }
 };
 
 onMounted(() => {
-    fetchProductHistory();
+  fetchProductHistory();
 });
 </script>
 
 <template>
-  <Header @user-logged-out="handleUserLoggedOut" :isLoogedIn="isLogged" />
-  <HistoryProduct :chartData="chartData" />
+  <HistoryProduct  :chartData="chartData" />
 </template>
 
 <style scoped lang="scss">
