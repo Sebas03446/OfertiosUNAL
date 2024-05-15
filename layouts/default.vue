@@ -37,9 +37,9 @@ const handleUserLoggedOut = () => {
 
 <template>
     <div :class="{ 'overlay-active': isLoginMenuOpen || isSignUpMenuOpen }" class="flex flex-col min-h-screen">
-        <Header @open-login-menu="handleOpenLoginMenu" @open-register-menu="handleOpenSignUpMenu" :isLoogedIn="isLogged"
+        <Header @open-login-menu="handleOpenLoginMenu" @open-register-menu="handleOpenSignUpMenu" :isLoggedIn="isLogged"
             @user-logged-out="handleUserLoggedOut" />
-        <div>
+        <div class="flex-grow full-width full-height">
             <slot />
         </div>
         <Footer />

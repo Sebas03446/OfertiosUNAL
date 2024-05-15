@@ -1,6 +1,7 @@
 <script setup>
 definePageMeta({
-  middleware: ['auth']
+    middleware: ['auth','is-loggin'],
+    layout: 'products'
 })
 import { ref, computed, onMounted } from "vue";
 
@@ -113,7 +114,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <Header @user-logged-out="handleUserLoggedOut" :isLoogedIn="isLogged" />
   <div class="flex flex-wrap justify-center m-10">
     <CardsProduct v-for="product in paginatedProducts" :key="product.producto_id" :product="product"
       cardClass="cursor-pointer transition-all bg-white border border-gray-200 rounded-lg hover:shadow-lg m-5 w-64 h-96"
