@@ -43,11 +43,15 @@ async function fetchProductHistory() {
 
     console.log(precios.value);
     console.log(product.value);
-    const labels = precios.value.map((entry) => {
+    const labels = precios.value
+      .map((entry) => {
       const date = new Date(entry.fecha);
-      return date.toLocaleDateString();
-    });
-
+      const options = { month: 'long', year: 'numeric', day: 'numeric' };
+      return date.toLocaleDateString('es-ES', options);
+      })
+      .sort((a, b) => new Date(b) - new Date(a));
+    
+      console.log(labels);
     const data = precios.value.map((entry) => parseFloat(entry.precio));
     chartData.value = {
       labels,
@@ -86,7 +90,17 @@ onMounted(() => {
 </script>
 
 <template>
-  <HistoryProduct  :chartData="chartData" />
+  <div class="flex flex-col">
+    <div class="flex flex-col items-center mb-6">
+      <h3 class="text-primary font-bold text-2xl mb-4">{{ product?.nombre }}</h3>
+      <div class="w-32 h-32 bg-gray-200 rounded-lg flex items-center justify-center overflow-hidden">
+        <img :src="product?.imagen" alt="Product Image" class="object-contain h-full w-full">
+      </div>
+    </div>
+    <div class="w-auto shadow-lg">
+      <HistoryProduct :chartData="chartData" />
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
