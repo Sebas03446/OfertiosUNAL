@@ -2,6 +2,7 @@
 const isLoginMenuOpen = ref(false);
 const isSignUpMenuOpen = ref(false);
 const isLogged = ref(false);
+const isForgotPasswordOpen = ref(false);
 
 const client = useSupabaseClient();
 
@@ -33,10 +34,20 @@ const handleUserLoggedOut = () => {
     client.auth.signOut();
     isLogged.value = false;
 };
+
+const handleOpenForgotPasswordMenu = () => {
+    isForgotPasswordOpen.value = true;
+};
+
+const closeForgotPasswordModal = () => {
+    isForgotPasswordOpen.value = false;
+};
+
+
 </script>
 
 <template>
-    <div :class="{ 'overlay-active': isLoginMenuOpen || isSignUpMenuOpen }" class="flex flex-col min-h-screen">
+    <div :class="{ 'overlay-active': isLoginMenuOpen || isSignUpMenuOpen || isForgotPasswordOpen }" class="flex flex-col min-h-screen">
         <Header @open-login-menu="handleOpenLoginMenu" @open-register-menu="handleOpenSignUpMenu" :isLoggedIn="isLogged"
             @user-logged-out="handleUserLoggedOut" />
         <div class="flex-grow full-width full-height">
@@ -46,11 +57,15 @@ const handleUserLoggedOut = () => {
     </div>
 
     <div v-if="isLoginMenuOpen" class="fixed inset-0 flex items-center justify-center">
-        <Login class="login-modal" @close-login-menu="handleCloseLoginMenu" @user-logged-in="handleUserLoggedIn" />
+        <Login class="login-modal" @close-login-menu="handleCloseLoginMenu" @user-logged-in="handleUserLoggedIn" @open-forgot-password-menu="handleOpenForgotPasswordMenu" />
     </div>
     <div v-if="isSignUpMenuOpen" class="fixed inset-0 flex items-center justify-center">
         <SignUp class="signup-modal" @close-signup-menu="handleCloseSignUpMenu" />
     </div>
+    <div v-if="isForgotPasswordOpen" class="fixed inset-0 flex items-center justify-center">
+        <ForgotPassword  @close-forgot-password-menu="closeForgotPasswordModal" class="forgot-password" />
+    </div>
+
 </template>
 
 <style lang="scss" scoped>

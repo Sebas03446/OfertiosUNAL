@@ -58,7 +58,7 @@ function closeForgotPasswordModal() {
       </div>
       <div>
         <input type="password" v-model="password" placeholder="Contraseña" required class="mt-1 w-full h-7 border-2 rounded">
-        <a href="#" class="text-xs text-tertiary hover:underline block text-right mt-2" @click.prevent="openForgotPasswordModal">¿Has olvidado tu contraseña?</a>
+        <a  class="text-xs text-tertiary hover:underline block text-right mt-2" @click.prevent="openForgotPasswordModal">¿Has olvidado tu contraseña?</a>
       </div>
       <div class="flex items-center justify-end mt-6 gap-4">
         <button :disabled="!isValidEmail(email) || !password" type="button" @click="signIn" class="text-white bg-primary hover:bg-secondary focus:ring-4 focus:ring-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center" :class="{'bg-gray-300 cursor-not-allowed': !isValidEmail(email) || !password}">Ingresar</button>
@@ -66,7 +66,6 @@ function closeForgotPasswordModal() {
     </form>
     <p v-if="errorMsg" class="text-red-400 text-xs mt-4">{{ errorMsg }}</p>
   </div>
-  <ForgotPassword v-if="isForgotPasswordMenuOpen" @close-forgot-password-menu="closeForgotPasswordModal" />
 </template>
 
 <style lang="scss" scoped>
