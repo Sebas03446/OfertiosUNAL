@@ -6,6 +6,16 @@ const isForgotPasswordOpen = ref(false);
 
 const client = useSupabaseClient();
 
+const user = useSupabaseUser();
+
+
+watchEffect(() => {
+    if (user.value) {
+        isLoginMenuOpen.value = false;
+        isLogged.value = true;
+        navigateTo('/products')
+    } 
+});
 
 
 const handleOpenLoginMenu = () => {
@@ -24,11 +34,11 @@ const handleCloseSignUpMenu = () => {
     isSignUpMenuOpen.value = false;
 };
 
-const handleUserLoggedIn = () => {
+/* const handleUserLoggedIn = () => {
     isLoginMenuOpen.value = false;
     navigateTo('/products')
     isLogged.value = true;
-};
+}; */
 
 const handleUserLoggedOut = () => {
     client.auth.signOut();
@@ -57,7 +67,7 @@ const closeForgotPasswordModal = () => {
     </div>
 
     <div v-if="isLoginMenuOpen" class="fixed inset-0 flex items-center justify-center">
-        <Login class="login-modal" @close-login-menu="handleCloseLoginMenu" @user-logged-in="handleUserLoggedIn" @open-forgot-password-menu="handleOpenForgotPasswordMenu" />
+        <Login class="login-modal" @close-login-menu="handleCloseLoginMenu" @open-forgot-password-menu="handleOpenForgotPasswordMenu" />
     </div>
     <div v-if="isSignUpMenuOpen" class="fixed inset-0 flex items-center justify-center">
         <SignUp class="signup-modal" @close-signup-menu="handleCloseSignUpMenu" />

@@ -1,6 +1,5 @@
 <script setup>
 definePageMeta({
-  middleware: ['auth', 'is-loggin'],
   layout: 'products',
 })
 import { ref, onMounted } from "vue";
