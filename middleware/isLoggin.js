@@ -3,15 +3,14 @@ export default defineNuxtRouteMiddleware(async () => {
     const { data, err } = await client.auth.getSession();
     if (err) {
         console.log('err', err)
-        return navigateTo('/');
+        return
+        //return navigateTo('/');
     }
     const user = data?.session?.user
-    console.log('user', user)
-    console.log('data', data)
-    console.log('err', err)
-
-    if (!user) {
+    console.log(data)
+    console.log(user)
+    /* if (!user) {
         return navigateTo('/');
-    }
+    } */
 });
 
