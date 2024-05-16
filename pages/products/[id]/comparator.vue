@@ -1,7 +1,4 @@
 <script setup>
-definePageMeta({
-  layout: 'products',
-})
 import { ref, onMounted } from "vue";
 
 const product = ref(null);

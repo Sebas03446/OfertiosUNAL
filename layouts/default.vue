@@ -34,15 +34,10 @@ const handleCloseSignUpMenu = () => {
     isSignUpMenuOpen.value = false;
 };
 
-/* const handleUserLoggedIn = () => {
-    isLoginMenuOpen.value = false;
-    navigateTo('/products')
-    isLogged.value = true;
-}; */
-
-const handleUserLoggedOut = () => {
-    client.auth.signOut();
+const handleUserLoggedOut = async () => {
+    await client.auth.signOut();
     isLogged.value = false;
+    navigateTo('/');
 };
 
 const handleOpenForgotPasswordMenu = () => {
@@ -57,7 +52,7 @@ const closeForgotPasswordModal = () => {
 </script>
 
 <template>
-    <div :class="{ 'overlay-active': isLoginMenuOpen || isSignUpMenuOpen || isForgotPasswordOpen }" class="flex flex-col min-h-screen">
+    <div v-if="!isLogged" :class="{ 'overlay-active': isLoginMenuOpen || isSignUpMenuOpen || isForgotPasswordOpen }" class="flex flex-col min-h-screen">
         <Header @open-login-menu="handleOpenLoginMenu" @open-register-menu="handleOpenSignUpMenu" :isLoggedIn="isLogged"
             @user-logged-out="handleUserLoggedOut" />
         <div class="flex-grow full-width full-height">
@@ -75,6 +70,14 @@ const closeForgotPasswordModal = () => {
     <div v-if="isForgotPasswordOpen" class="fixed inset-0 flex items-center justify-center">
         <ForgotPassword  @close-forgot-password-menu="closeForgotPasswordModal" class="forgot-password" />
     </div>
+
+    <div v-if="isLogged" :class="{ 'overlay-active': isLoginMenuOpen || isSignUpMenuOpen }" class="flex flex-col min-h-screen">
+    <Header :isLoggedIn="isLogged" @user-logged-out="handleUserLoggedOut" />
+    <div class="flex-grow full-width full-height">
+      <slot />
+    </div>
+    <Footer />
+  </div>
 
 </template>
 
