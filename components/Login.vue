@@ -16,6 +16,8 @@ async function signIn() {
     
     if (error) throw error;
 
+    const { data, _ } = await client.auth.getSession();
+    console.log(data);
     emit("user-logged-in");
   } catch(error) {
     errorMsg.value = error.message;

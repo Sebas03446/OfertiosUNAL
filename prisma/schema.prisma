@@ -52,6 +52,7 @@ model productos {
   producto_id  Int      @id @default(autoincrement())
   nombre       String?  @db.VarChar(255)
   calificacion Decimal? @db.Decimal
+  imagen       String?
 }
 
 model usuarios {
