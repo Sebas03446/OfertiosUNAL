@@ -1,7 +1,7 @@
 <script setup>
 definePageMeta({
-    middleware: ['auth','is-loggin'],
-    layout: 'products'
+  middleware: ['auth', 'is-loggin'],
+  layout: 'products'
 })
 import { ref, computed, onMounted } from "vue";
 
@@ -10,12 +10,7 @@ const products = ref([]);
 const fetching = ref(false);
 const currentPage = ref(1);
 const itemsPerPage = 10;
-const productoId = ref(null);
-const isAbleHistory = ref(false);
-const product = ref(null);
-const precios = ref([]);
-const chartData = ref(null);
-const isLogged = ref(true);
+const isLoading = ref(true);
 
 
 const paginatedProducts = computed(() => {
@@ -51,6 +46,7 @@ async function fetchProducts() {
     console.log('Error obteniendo productos');
   } finally {
     fetching.value = false;
+    isLoading.value = false;
   }
 }
 
@@ -60,13 +56,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-wrap justify-center m-10">
+
+  <div v-show="isLoading" class="flex justify-center items-center h-screen">
+    <Loading />
+  </div>
+
+  <div v-show="!isLoading" class="flex flex-wrap justify-center m-10">
     <CardsProduct v-for="product in paginatedProducts" :key="product.producto_id" :product="product"
       cardClass="cursor-pointer transition-all bg-white border border-gray-200 rounded-lg hover:shadow-lg m-5 w-64 h-96"
       @product-clicked="onProductClicked" />
   </div>
 
-  <div class="flex justify-center mt-5">
+  <div v-show="!isLoading" class="flex justify-center mt-5">
     <button class="mr-2" :disabled="currentPage === 1" @click="currentPage--">
       Anterior
     </button>

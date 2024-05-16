@@ -42,7 +42,7 @@
         </ul>
         <button class="hidden sm:block bg-primary text-quaternary px-4 py-2 rounded hover:bg-tertiary transition-colors"
           @click="logout">
-          Logout
+          Cerrar sesión
         </button>
       </div>
     </nav>
