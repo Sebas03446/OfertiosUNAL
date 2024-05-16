@@ -19,8 +19,8 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: '/',
       callback: '/confirm',
-      include: ['/resetpassword/'],
-      exclude: ['/', '/about', '/members','/auth', '/forgotpassword','/test','/services', '/conditions'],
+      include: ['/resetpassword/','/resetpassword'],
+      exclude: ['/', '/about', '/members','/auth','/test','/services', '/conditions'],
       cookieRedirect: false,
     
   },
