@@ -6,11 +6,10 @@ const email = ref("");
 const errorMsg = ref("");
 const successMsg = ref("");
 const emit = defineEmits(["close-login-menu", "user-logged-in","open-forgot-password-menu","close-forgot-password-menu"]);
-const redirectTo = process.env.OFERTIOS_REDIRECT_TO;
 
 async function forgotPassword() {
   try {
-    const { error } = await client.auth.resetPasswordForEmail(email.value, { redirectTo });
+    const { error } = await client.auth.resetPasswordForEmail(email.value, { redirectTo: "https://ofertios-unal.vercel.app/reset-password"});
     
 
     if (error) {
