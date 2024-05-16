@@ -5,7 +5,6 @@ export default defineNuxtRouteMiddleware(async () => {
         return navigateTo('/');
     }
     const user = data?.session?.user
-    console.log('User:', user);
     if (!user) {
         return navigateTo('/');
     }

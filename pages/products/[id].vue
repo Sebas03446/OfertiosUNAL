@@ -40,18 +40,14 @@ async function fetchProductHistory() {
     product.value = response.data.value.producto;
     precios.value = response.data.value.precios;
 
-
-    console.log(precios.value);
-    console.log(product.value);
     const labels = precios.value
-      .map((entry) => {
-      const date = new Date(entry.fecha);
-      const options = { month: 'long', year: 'numeric', day: 'numeric' };
-      return date.toLocaleDateString('es-ES', options);
-      })
-      .sort((a, b) => new Date(b) - new Date(a));
-    
-      console.log(labels);
+      .map(entry => new Date(entry.fecha))
+      .sort((a, b) => a - b)
+      .map(date => {
+        const options = { month: 'long', year: 'numeric', day: 'numeric' };
+        return date.toLocaleDateString('es-ES', options);
+      });
+
     const data = precios.value.map((entry) => parseFloat(entry.precio));
     chartData.value = {
       labels,
