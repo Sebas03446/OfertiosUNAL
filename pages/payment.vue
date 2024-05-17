@@ -11,7 +11,7 @@ const pay = async () => {
 		method: 'POST',
 		body: {
 			product_name: 'subscripcion',
-			price: 2,
+			price: 10000,
 			payment_method: paymentMethod.value,
 		},
 	})
