@@ -1,5 +1,3 @@
-// ENVIE AL ENDPOINT USANDO KEY ASÍ: http://localhost:3000/api/historial_producto?producto_id=600
-
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
