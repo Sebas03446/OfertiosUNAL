@@ -1,5 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
+const user = useSupabaseUser();
+const isPremium = ref(false);
 
 const product = ref(null);
 const precios = ref([]);
@@ -17,6 +19,29 @@ const chartData = ref({
   ],
 });
 const route = useRoute()
+
+async function validatePremium() {
+  console.log(user.value.id,"user");
+  const response = await useFetch("/api/user", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    query: {
+      user_id: user.value.id,
+    },
+  });
+
+  await response.execute();
+
+  if (response.error.value) {
+    console.error("Error fetching user data");
+  } else {
+    isPremium.value = response.data.value.is_premium;
+    console.log(isPremium.value,"isPremium");
+  }
+
+}
 
 async function fetchProductHistory() {
   const producto_id = route.params.id;
@@ -62,6 +87,7 @@ async function fetchProductHistory() {
 };
 
 onMounted(() => {
+  validatePremium();
   fetchProductHistory();
 });
 </script>
@@ -71,15 +97,23 @@ onMounted(() => {
     <div v-show="isLoading" class="flex justify-center items-center h-screen">
       <Loading />
     </div>
-    <div v-show="!isLoading" class="flex flex-col items-center mb-6">
-      <h3 class="text-primary font-bold text-2xl mb-4">{{ product?.nombre }}</h3>
-      <div class="w-32 h-32 bg-gray-200 rounded-lg flex items-center justify-center overflow-hidden">
-        <img :src="product?.imagen" alt="Product Image" class="object-contain h-full w-full">
+    <div v-show="!isLoading" class="flex justify-normal items-center space-x-4">
+      <div class="flex flex-col items-center mb-6">
+        <h3 class="text-primary font-bold text-2xl mb-4">{{ product?.nombre }}</h3>
+        <div class="w-32 h-32 bg-gray-200 rounded-lg flex items-center justify-center overflow-hidden">
+          <img :src="product?.imagen" alt="Product Image" class="object-contain h-full w-full">
+        </div>
+        <a :href="`/products/${route.params.id}/comparator`"
+          class="mt-4 px-4 py-2 bg-tertiary text-white rounded-lg hover:bg-tertiary-dark transition">
+          Comparar Precios
+        </a>
       </div>
-      <a :href="`/products/${route.params.id}/comparator`" class="mt-4 px-4 py-2 bg-tertiary text-white rounded-lg hover:bg-tertiary-dark transition">
-        Comparar Precios
-      </a>
+      <div>
+        <p v-show="isPremium">descipción chatgpt</p>
+        <p v-show="!isPremium" class="text-tertiary">Para ver la descripción completa, necesitas ser usuario premium</p>
+      </div>
     </div>
+
     <div class="w-auto shadow-lg">
       <HistoryProduct :chartData="chartData" />
     </div>

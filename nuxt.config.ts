@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase'],
   runtimeConfig:{
+    baseUrl: process.env.BASE_URL,
     mercadopagoWebhookSecret: '',
     mercadopagoAccessToken: '',
     public: {
@@ -24,7 +25,7 @@ export default defineNuxtConfig({
      redirectOptions: {
       login: '/',
       callback: '/',
-      exclude: ['/', '/about', '/members','/services', '/conditions'], 
-      include: ['/products', '/products/*', '/products/**', '/products/**/*'],
+      exclude: ['/', '/about', '/members','/services', '/conditions', '/api/webhook/mercadopago', '/thank-you'], 
+      include: ['/products', '/products/*', '/products/**', '/products/**/*','/payment'],
   }, 
 }});

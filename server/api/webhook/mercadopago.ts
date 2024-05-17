@@ -2,10 +2,12 @@ import crypto from 'crypto'
 import { Payment } from 'mercadopago'
 
 export default defineEventHandler(async event => {
-    console.log("paso")
+    
 	const runtimeConfig = useRuntimeConfig()
 
 	const body = await readBody(event)
+	console.log(body)
+	
 	if (!body) {
 		setResponseStatus(event, 400)
 		return { error: 'Missing body' }
