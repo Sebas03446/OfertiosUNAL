@@ -27,7 +27,7 @@ const formattedPrice = computed(() => {
       <div class="flex flex-col items-center p-5">
         
         <div class="w-20 h-20 bg-gray-300 rounded-lg mb-4 flex items-center justify-center text-gray-500">
-          <i class="fas fa-box-open"></i> <!-- Default icon or text -->
+          <img :src="props.product.imagen" alt="Product Image" class="object-contain h-full w-full">
         </div>
   
         <h3 class="text-primary font-bold text-xl">{{ product.nombre }}</h3>

@@ -1,8 +1,8 @@
-export default defineNuxtRouteMiddleware(() => {
-    const user = useSupabaseClient();
-    if (user) {
-        console.log('User is logged in', user);
-        return navigateTo('/products');
-    }
+export default defineNuxtRouteMiddleware(async () => {
+    const user = useSupabaseUser()
+
+  if (!user.value) {
+    return navigateTo('/')
+  }
 });
 

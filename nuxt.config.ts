@@ -2,9 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true, vscode: { reuseExistingServer: true } },
   routeRules: {
-    // prerender index route by default
     '/': { prerender: true },
-
   },
   
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase'],
@@ -22,12 +20,11 @@ export default defineNuxtConfig({
   supabase: {
     url: process.env.SUPABASE_URL,
     key: process.env.SUPABASE_KEY,
-    redirectOptions: {
+    //redirect: true,
+     redirectOptions: {
       login: '/',
-      callback: '/confirm',
-      include: ['/resetpassword/'],
-      exclude: ['/', '/about', '/members','/auth', '/forgotpassword','/test','/services', '/conditions','/thank-you','/payment'],
-      cookieRedirect: false,
-    
-  },
+      callback: '/',
+      exclude: ['/', '/about', '/members','/services', '/conditions'], 
+      include: ['/products', '/products/*', '/products/**', '/products/**/*'],
+  }, 
 }});

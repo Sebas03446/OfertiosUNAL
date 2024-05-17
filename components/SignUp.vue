@@ -8,6 +8,8 @@ const password = ref('');
 const confirmPassword = ref('');
 const errorMsg = ref(null);
 const successMsg = ref(null);
+const emit = defineEmits(["close-signup-menu"]);
+const acceptTerms = ref(false);
 
 async function signUp() {
   try {
@@ -56,12 +58,18 @@ function register(event) {
     return;
   }
 
-  // Clear any previous error messages
+  if (!acceptTerms.value) {
+    errorMsg.value = "Primero debes aceptar nuestros términos y condiciones.";
+    return;
+  }
   errorMsg.value = null;
 
-  // Call signUp function
   signUp();
 }
+
+function closeSignUpModal() {
+    emit("close-signup-menu");
+  }
 </script>
 
 <template>
@@ -72,25 +80,35 @@ function register(event) {
     <h1 class="text-lg font-bold text-center mb-6 text-primary">Registro</h1>
     <form class="space-y-4" @submit="register">
       <div>
-        <input type="text" v-model="username" placeholder="Nombre de usuario" required class="mt-1 w-full h-7 border-2 rounded">
+        <input type="text" v-model="username" placeholder="Nombre de usuario" required
+          class="mt-1 w-full h-7 border-2 rounded">
       </div>
       <div>
-        <input type="email" v-model="email" placeholder="Email" required class="mt-1 w-full h-7 border-2 rounded" :class="{'border-red-300 bg-red-50 placeholder-red-200 text-red-900': !isValidEmail(email)}">
+        <input type="email" v-model="email" placeholder="Email" required class="mt-1 w-full h-7 border-2 rounded"
+          :class="{ 'border-red-300 bg-red-50 placeholder-red-200 text-red-900': email != '' && !isValidEmail(email) }">
       </div>
       <div>
-        <input type="password" v-model="password" placeholder="Contraseña" required class="mt-1 w-full h-7 border-2 rounded" :class="{'border-red-300 bg-red-50 placeholder-red-200 text-red-900': password.length > 0 && !isValidPassword(password)}">
-        <p v-if="password.length > 0 && !isValidPassword(password)" class="text-red-400 text-xs">La contraseña debe tener entre 6 y 20 caracteres</p>
+        <input type="password" v-model="password" placeholder="Contraseña" required
+          class="mt-1 w-full h-7 border-2 rounded"
+          :class="{ 'border-red-300 bg-red-50 placeholder-red-200 text-red-900': password.length > 0 && !isValidPassword(password) }">
+        <p v-if="password.length > 0 && !isValidPassword(password)" class="text-red-400 text-xs">La contraseña debe
+          tener entre 6 y 20 caracteres</p>
       </div>
       <div>
         <input type="password" v-model="confirmPassword" placeholder="Confirmar contraseña" required class="mt-1 w-full h-7 border-2 rounded" :class="{'border-red-300 bg-red-50 placeholder-red-200 text-red-900': password !== confirmPassword && confirmPassword.length > 0}">
       </div>
+      <div class="flex items-center">
+        <input type="checkbox" v-model="acceptTerms" class="mr-2">
+        <label for="acceptTerms" class="text-sm text-tertiary">Acepto los <router-link to="/conditions" class="text-primary" @click="closeSignUpModal" >Términos y Condiciones</router-link></label>
+      </div>
       <p v-if="errorMsg" class="text-red-400 text-xs">{{ errorMsg }}</p>
       <p v-if="successMsg" class="text-green-400 text-xs">{{ successMsg }}</p>
-      <button type="submit" class="w-full bg-primary hover:bg-secondary focus:ring-4 focus:ring-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white" :disabled="!isValidUsername(username) || !isValidEmail(email) || !isValidPassword(password)">Registrarse</button>
+      <button type="submit"
+        class="w-full bg-primary hover:bg-secondary focus:ring-4 focus:ring-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white"
+        :disabled="!isValidUsername(username) || !isValidEmail(email) || !isValidPassword(password) || !acceptTerms " :class="{'bg-gray-300 cursor-not-allowed':!acceptTerms || !isValidUsername(username) || !isValidEmail(email) || !isValidPassword(password)}">Registrarse</button>
     </form>
   </div>
 </template>
 
 <style lang="scss" scoped>
-/* Estilos aquí */
 </style>

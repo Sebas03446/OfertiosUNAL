@@ -5,7 +5,7 @@ const router = useRouter();
 const email = ref("");
 const password = ref("");
 const errorMsg = ref(null);
-const emit = defineEmits(["close-login-menu", "user-logged-in"]);
+const emit = defineEmits(["close-login-menu", "user-logged-in","open-forgot-password-menu","close-forgot-password-menu"]);
 
 async function signIn() {
   try {
@@ -27,9 +27,19 @@ function isValidEmail(email) {
   return re.test(email.toLowerCase());
 }
 
-function  closeLoginModal() {
+function closeLoginModal() {
   emit("close-login-menu");
-    }
+}
+
+function openForgotPasswordModal() {
+  emit("close-login-menu");
+  emit("open-forgot-password-menu");
+  
+}
+
+function closeForgotPasswordModal() {
+  emit("close-forgot-password-menu");
+}
 
 </script>
 
@@ -46,7 +56,7 @@ function  closeLoginModal() {
       </div>
       <div>
         <input type="password" v-model="password" placeholder="Contraseña" required class="mt-1 w-full h-7 border-2 rounded">
-        <a href="/forgotpassword/" class="text-xs text-tertiary hover:underline block text-right mt-2">¿Has olvidado tu contraseña?</a>
+        <a  class="text-xs text-tertiary hover:underline block text-right mt-2" @click.prevent="openForgotPasswordModal">¿Has olvidado tu contraseña?</a>
       </div>
       <div class="flex items-center justify-end mt-6 gap-4">
         <button :disabled="!isValidEmail(email) || !password" type="button" @click="signIn" class="text-white bg-primary hover:bg-secondary focus:ring-4 focus:ring-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center" :class="{'bg-gray-300 cursor-not-allowed': !isValidEmail(email) || !password}">Ingresar</button>

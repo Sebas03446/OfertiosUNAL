@@ -1,3 +1,20 @@
+<script setup>
+  import { ref } from "vue";
+  const user = useSupabaseUser();
+  const emit = defineEmits(["open-login-menu", "open-register-menu", "user-logged-out"]);
+  
+  function openLoginMenu() {
+     emit("open-login-menu");
+    }
+  function openRegisterMenu() {
+      this.$emit("open-register-menu");
+    }
+  
+  function logout() {
+      emit("user-logged-out");
+  }
+</script>
+
 <template>
   <header class="bg-white shadow-md">
     <nav class="container mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center">
@@ -12,7 +29,7 @@
       </div>
 
       <ul class="hidden sm:flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-4 sm:mt-0 w-full sm:w-auto"
-        v-if="!isLoogedIn">
+        v-if="!user">
         <li>
           <a href="/" class="text-quaternary hover:text-tertiary">Inicio</a>
         </li>
@@ -23,7 +40,7 @@
           <a href="/about" class="text-quaternary hover:text-tertiary">¿Quiénes Somos?</a>
         </li>
       </ul>
-      <div class="flex items-center space-x-4" v-if="!isLoogedIn">
+      <div class="flex items-center space-x-4" v-if="!user">
         <button class="hidden sm:block bg-primary text-quaternary px-4 py-2 rounded hover:bg-tertiary transition-colors"
           @click="openLoginMenu">
           Ingresar
@@ -33,42 +50,20 @@
           Registrarse
         </button>
       </div>
-      <div class="flex items-center space-x-4" v-if="isLoogedIn">
+      <div class="flex justify-between items-center w-full sm:w-auto" v-if="user">
+        <ul
+          class="hidden mr-10 sm:flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-4 sm:mt-0 w-full sm:w-auto">
+          <li>
+            <a href="/products" class="text-quaternary hover:text-tertiary">Productos</a>
+          </li>
+        </ul>
         <button class="hidden sm:block bg-primary text-quaternary px-4 py-2 rounded hover:bg-tertiary transition-colors"
           @click="logout">
-          Logout
+          Cerrar sesión
         </button>
       </div>
     </nav>
   </header>
 </template>
-
-<script>
-export default {
-  name: "HeaderComponent",
-  props: {
-    isLoogedIn: Boolean,
-  },
-  data() {
-    return {
-      isMenuOpen: false,
-    };
-  },
-  methods: {
-    toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen;
-    },
-    openLoginMenu() {
-      this.$emit("open-login-menu");
-    },
-    openRegisterMenu() {
-      this.$emit("open-register-menu");
-    },
-    logout() {
-      this.$emit("user-logged-out");
-    },
-  },
-};
-</script>
 
 <style lang="scss"></style>
