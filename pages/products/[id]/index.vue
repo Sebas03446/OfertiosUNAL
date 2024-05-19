@@ -9,6 +9,8 @@ const isLoading = ref(true);
 const pending = ref(false);
 const paymentMethod = ref('mercadopago');
 const productDescription = ref("");
+const router = useRouter();
+
 
 const chartData = ref({
   labels: [],
