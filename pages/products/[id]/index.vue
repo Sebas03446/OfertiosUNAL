@@ -157,7 +157,7 @@ onMounted(() => {
         </div>
         <button
           v-if="isPremium"
-          @click="() => navigateTo(`/products/${product.id}/comparator`)"
+          @click="() => navigateTo(`/products/${router.params.id}/comparator`)"
           class="mt-4 px-4 py-2 bg-tertiary text-white rounded-lg hover:bg-tertiary-dark transition disabled:bg-gray-300 disabled:cursor-not-allowed">
           Comparar Precios
         </button>
