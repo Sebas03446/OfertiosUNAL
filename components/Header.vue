@@ -39,6 +39,9 @@
         <li>
           <a href="/about" class="text-quaternary hover:text-tertiary">¿Quiénes Somos?</a>
         </li>
+        <li>
+          <a href="/support" class="text-quaternary hover:text-tertiary">Soporte</a>
+        </li>
       </ul>
       <div class="flex items-center space-x-4" v-if="!user">
         <button class="hidden sm:block bg-primary text-quaternary px-4 py-2 rounded hover:bg-tertiary transition-colors"
