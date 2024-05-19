@@ -7,7 +7,7 @@
      emit("open-login-menu");
     }
   function openRegisterMenu() {
-      this.$emit("open-register-menu");
+      emit("open-register-menu");
     }
   
   function logout() {

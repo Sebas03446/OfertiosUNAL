@@ -6,6 +6,15 @@ export default defineNuxtConfig({
   },
   
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase'],
+  runtimeConfig:{
+    baseUrl: process.env.BASE_URL,
+    mercadopagoWebhookSecret: '',
+    mercadopagoAccessToken: '',
+    public: {
+      mercadopagoKey: '',
+      baseUrl: process.env.BASE_URL,
+    },
+  },
   nitro: {
     plugins: ['./plugins/db-init.js'],
   },
@@ -13,11 +22,10 @@ export default defineNuxtConfig({
   supabase: {
     url: process.env.SUPABASE_URL,
     key: process.env.SUPABASE_KEY,
-    //redirect: true,
      redirectOptions: {
       login: '/',
       callback: '/',
-      exclude: ['/', '/about', '/members','/services', '/conditions'], 
-      include: ['/products', '/products/*', '/products/**', '/products/**/*'],
+      exclude: ['/', '/about', '/members','/services', '/conditions', '/api/webhook/mercadopago'], 
+      include: ['/products', '/products/*', '/products/**', '/products/**/*','/payment', '/resetpassword', '/thank-you']
   }, 
 }});

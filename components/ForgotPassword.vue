@@ -6,10 +6,11 @@ const email = ref("");
 const errorMsg = ref("");
 const successMsg = ref("");
 const emit = defineEmits(["close-login-menu", "user-logged-in", "open-forgot-password-menu", "close-forgot-password-menu"]);
+const runtimeConfig = useRuntimeConfig();
 
 async function forgotPassword() {
   try {
-    const { error } = await client.auth.resetPasswordForEmail(email.value, { redirectTo: window.location.origin + "/resetpassword" });
+    const { error } = await client.auth.resetPasswordForEmail(email.value);
 
 
     if (error) {
