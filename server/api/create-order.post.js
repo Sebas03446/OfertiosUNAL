@@ -4,7 +4,6 @@ export default defineEventHandler(async event => {
 	const runtimeConfig = useRuntimeConfig()
 	const body = await readBody(event)
 
-	console.log(runtimeConfig)
 	switch (body.payment_method) {
 		case 'mercadopago':
 			const preference = new Preference(mercadopago)
@@ -13,7 +12,8 @@ export default defineEventHandler(async event => {
 				body: {
 					auto_return: 'approved',
 					back_urls: {
-						success: `${runtimeConfig.baseUrl}/success`,
+						success: `${runtimeConfig.baseUrl}/thank-you`,
+						failure: `${runtimeConfig.baseUrl}/failure`,
 					},
 					items: [
 						{
@@ -22,7 +22,7 @@ export default defineEventHandler(async event => {
 								.replace(' ', '_'),
 							quantity: 1,
 							title: body.product_name,
-							unit_price: 10000 ,
+							unit_price: 2000 ,
 						},
 					],
 				},

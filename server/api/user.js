@@ -3,7 +3,6 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
-    console.log("getUser event: ");
   const query = getQuery(event);
 
   if (!query || !query.user_id) {
@@ -28,7 +27,7 @@ async function getUser(user_id) {
             statusMessage: "User not found"
         });
         }
-    
+        console.log(user, "user");
         return user;
     } catch (error) {
         console.error(error);

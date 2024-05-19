@@ -6,7 +6,6 @@ export default defineEventHandler(async event => {
 	const runtimeConfig = useRuntimeConfig()
 
 	const body = await readBody(event)
-	console.log(body)
 	
 	if (!body) {
 		setResponseStatus(event, 400)

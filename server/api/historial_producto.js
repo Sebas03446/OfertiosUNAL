@@ -1,6 +1,64 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
+const almacenes = [
+  {
+    "almacen_id": 10,
+    "nombre": "Falabella",
+    "ubicacion": null
+  },
+  {
+    "almacen_id": 11,
+    "nombre": "Exito",
+    "ubicacion": null
+  },
+  {
+    "almacen_id": 12,
+    "nombre": "Alkosto",
+    "ubicacion": null
+  },
+  {
+    "almacen_id": 13,
+    "nombre": "Tiendas Jumbo",
+    "ubicacion": null
+  },
+  {
+    "almacen_id": 14,
+    "nombre": "iShop",
+    "ubicacion": null
+  },
+  {
+    "almacen_id": 15,
+    "nombre": "Mac Center",
+    "ubicacion": null
+  },
+  {
+    "almacen_id": 16,
+    "nombre": "Tienda Mac",
+    "ubicacion": null
+  },
+  {
+    "almacen_id": 17,
+    "nombre": "Mi Store Colombia",
+    "ubicacion": null
+  },
+  {
+    "almacen_id": 18,
+    "nombre": "Mercado Libre",
+    "ubicacion": null
+  },
+  {
+    "almacen_id": 19,
+    "nombre": "Tiendas Falabella",
+    "ubicacion": null
+  },
+  {
+    "almacen_id": 20,
+    "nombre": "Tiendas Exito",
+    "ubicacion": null
+  }
+]
+
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);
 
@@ -55,6 +113,11 @@ async function getProductPrices(productoId) {
 
     const uniquePrecios = filterUniquePrecios(precios);
 
+    uniquePrecios.forEach((precio) => {
+      const almacen = almacenes.find((almacen) => almacen.almacen_id === precio.almacen_id);
+      precio.almacen = almacen.nombre;
+    }
+      );
     return { producto, precios: uniquePrecios };
   } catch (error) {
     console.error(error);

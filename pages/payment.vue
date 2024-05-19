@@ -21,7 +21,7 @@ const pay = async () => {
 	if (response.url) {
 		window.location.href = response.url
 	} else {
-		alert('Something went wrong')
+		alert('Error creando la orden de pago')
 	}
 }
 </script>

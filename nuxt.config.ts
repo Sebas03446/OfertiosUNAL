@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     mercadopagoAccessToken: '',
     public: {
       mercadopagoKey: '',
+      baseUrl: process.env.BASE_URL,
     },
   },
   nitro: {
@@ -21,11 +22,10 @@ export default defineNuxtConfig({
   supabase: {
     url: process.env.SUPABASE_URL,
     key: process.env.SUPABASE_KEY,
-    //redirect: true,
      redirectOptions: {
       login: '/',
       callback: '/',
-      exclude: ['/', '/about', '/members','/services', '/conditions', '/api/webhook/mercadopago', '/thank-you'], 
-      include: ['/products', '/products/*', '/products/**', '/products/**/*','/payment'],
+      exclude: ['/', '/about', '/members','/services', '/conditions', '/api/webhook/mercadopago'], 
+      include: ['/products', '/products/*', '/products/**', '/products/**/*','/payment', '/resetpassword', '/thank-you']
   }, 
 }});
