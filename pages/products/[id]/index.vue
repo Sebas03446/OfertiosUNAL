@@ -9,7 +9,7 @@ const isLoading = ref(true);
 const pending = ref(false);
 const paymentMethod = ref('mercadopago');
 const productDescription = ref("");
-const router = useRouter();
+const route = useRouter();
 
 
 const chartData = ref({
@@ -24,10 +24,7 @@ const chartData = ref({
     },
   ],
 });
-const route = useRoute()
-
 async function validatePremium() {
-  console.log("pasing here")
   const response = await useFetch("/api/user", {
     method: "GET",
     headers: {
@@ -47,8 +44,15 @@ async function validatePremium() {
   }
 }
 
+
+function goToCompare() {
+  const product_id = route.currentRoute.value.params.id;
+  navigateTo(`/products/${product_id}/comparator`);
+}
+
 async function fetchProductHistory() {
-  const producto_id = route.params.id;
+  const producto_id = route.currentRoute.value.params.id;
+  console.log(producto_id)
   const response = await useFetch(`/api/historial_producto?producto_id=${producto_id}`, {
     method: "GET",
     headers: {
@@ -157,7 +161,7 @@ onMounted(() => {
         </div>
         <button
           v-if="isPremium"
-          @click="() => navigateTo(`/products/${router.params.id}/comparator`)"
+          @click="goToCompare"
           class="mt-4 px-4 py-2 bg-tertiary text-white rounded-lg hover:bg-tertiary-dark transition disabled:bg-gray-300 disabled:cursor-not-allowed">
           Comparar Precios
         </button>
