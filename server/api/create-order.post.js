@@ -22,7 +22,7 @@ export default defineEventHandler(async event => {
 								.replace(' ', '_'),
 							quantity: 1,
 							title: body.product_name,
-							unit_price: 2000 ,
+							unit_price: 10000 ,
 						},
 					],
 				},
