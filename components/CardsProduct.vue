@@ -35,6 +35,16 @@ const formattedPrice = computed(() => {
   
         
         <div class="text-quinary font-bold text-lg mt-2">{{ formattedPrice }}</div>
+        <div class="flex mt-2">
+        <span v-for="index in 5" :key="index" class="text-yellow-500">
+          <svg v-if="index <= product.calificacion" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-5 h-5" viewBox="0 0 24 24">
+            <path d="M12 .587l3.668 7.572 8.332 1.151-6.064 5.857 1.428 8.257-7.364-3.885-7.364 3.885 1.428-8.257-6.064-5.857 8.332-1.151z"/>
+          </svg>
+          <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-5 h-5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.36 4.205a1 1 0 00.95.69h4.396c.969 0 1.371 1.24.588 1.81l-3.548 2.637a1 1 0 00-.364 1.118l1.36 4.205c.3.921-.755 1.688-1.54 1.118l-3.548-2.637a1 1 0 00-1.176 0l-3.548 2.637c-.784.57-1.84-.197-1.54-1.118l1.36-4.205a1 1 0 00-.364-1.118L2.748 9.632c-.784-.57-.38-1.81.588-1.81h4.396a1 1 0 00.95-.69l1.36-4.205z"/>
+          </svg>
+        </span>
+      </div>
       </div>
     </div>
   </template>

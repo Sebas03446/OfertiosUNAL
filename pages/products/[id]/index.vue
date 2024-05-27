@@ -149,13 +149,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col p-4">
     <div v-show="isLoading" class="flex justify-center items-center h-screen">
       <Loading />
     </div>
-    <div v-show="!isLoading" class="flex justify-center items-center space-x-4">
-      <div class="flex flex-col justify-center items-center mb-6">
-        <h3 class="text-primary font-bold text-2xl mb-4">{{ product?.nombre }}</h3>
+    <div v-show="!isLoading" class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+      <div class="flex flex-col justify-center items-center mb-6 sm:mb-0">
+        <h3 class="text-primary font-bold text-2xl mb-4 text-center">{{ product?.nombre }}</h3>
         <div class="w-32 h-32 bg-gray-200 rounded-lg flex items-center justify-center overflow-hidden">
           <img :src="product?.imagen" alt="Product Image" class="object-contain h-full w-full">
         </div>
@@ -173,17 +173,18 @@ onMounted(() => {
           Suscribirse
         </button>
       </div>
-      <div>
+      <div class="text-center justify-center sm:text-left p-5 w-80 break-words">
         <p v-show="isPremium">{{ productDescription }}</p>
         <p v-show="!isPremium" class="text-tertiary">Para ver la descripción completa, necesitas ser usuario premium</p>
       </div>
     </div>
 
-    <div class="w-auto shadow-lg">
+    <div class="w-full shadow-lg mt-6">
       <HistoryProduct :chartData="chartData" />
     </div>
   </div>
 </template>
+
 
 <style scoped lang="scss">
 .card {

@@ -35,6 +35,5 @@
   </script>
   
   <style scoped>
-  /* Ensure all CSS blocks are properly closed */
   </style>
   

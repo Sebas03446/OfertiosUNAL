@@ -5,7 +5,7 @@ const router = useRouter();
 const email = ref("");
 const password = ref("");
 const errorMsg = ref(null);
-const emit = defineEmits(["close-login-menu", "user-logged-in","open-forgot-password-menu","close-forgot-password-menu"]);
+const emit = defineEmits(["close-login-menu", "user-logged-in", "open-forgot-password-menu", "close-forgot-password-menu"]);
 
 async function signIn() {
   try {
@@ -13,11 +13,11 @@ async function signIn() {
       email: email.value,
       password: password.value,
     });
-    
+
     if (error) throw error;
 
     emit("user-logged-in");
-  } catch(error) {
+  } catch (error) {
     errorMsg.value = error.message;
   }
 }
@@ -34,7 +34,7 @@ function closeLoginModal() {
 function openForgotPasswordModal() {
   emit("close-login-menu");
   emit("open-forgot-password-menu");
-  
+
 }
 
 function closeForgotPasswordModal() {
@@ -51,20 +51,25 @@ function closeForgotPasswordModal() {
     <h1 class="text-lg font-bold text-center mb-6 text-primary">Inicio de sesión</h1>
     <form class="space-y-4" @submit.prevent="signIn">
       <div class="flex flex-col items-start">
-        <input type="email" v-model="email" placeholder="Correo electrónico" required class="mt-1 w-full h-7 border-2 rounded" :class="{'border-red-300 bg-red-50 placeholder-red-200 text-red-900': !isValidEmail(email) && email.length > 0}">
+        <input type="email" v-model="email" placeholder="Correo electrónico" required
+          class="mt-1 w-full h-7 border-2 rounded"
+          :class="{ 'border-red-300 bg-red-50 placeholder-red-200 text-red-900': !isValidEmail(email) && email.length > 0 }">
         <p v-if="!isValidEmail(email) && email.length > 0" class="text-red-400 text-xs">Correo electrónico inválido</p>
       </div>
       <div>
-        <input type="password" v-model="password" placeholder="Contraseña" required class="mt-1 w-full h-7 border-2 rounded">
-        <a  class="text-xs text-tertiary hover:underline block text-right mt-2" @click.prevent="openForgotPasswordModal">¿Has olvidado tu contraseña?</a>
+        <input type="password" v-model="password" placeholder="Contraseña" required
+          class="mt-1 w-full h-7 border-2 rounded">
+        <a class="text-xs text-tertiary hover:underline block text-right mt-2"
+          @click.prevent="openForgotPasswordModal">¿Has olvidado tu contraseña?</a>
       </div>
       <div class="flex items-center justify-end mt-6 gap-4">
-        <button :disabled="!isValidEmail(email) || !password" type="button" @click="signIn" class="text-white bg-primary hover:bg-secondary focus:ring-4 focus:ring-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center" :class="{'bg-gray-300 cursor-not-allowed': !isValidEmail(email) || !password}">Ingresar</button>
+        <button :disabled="!isValidEmail(email) || !password" type="button" @click="signIn"
+          class="text-white bg-primary hover:bg-secondary focus:ring-4 focus:ring-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+          :class="{ 'bg-gray-300 cursor-not-allowed': !isValidEmail(email) || !password }">Ingresar</button>
       </div>
     </form>
     <p v-if="errorMsg" class="text-red-400 text-xs mt-4">{{ errorMsg }}</p>
   </div>
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

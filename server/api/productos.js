@@ -12,8 +12,10 @@ async function getProductsAndPrices() {
       select: { 
         producto_id: true, 
         nombre: true, 
-        imagen: true 
-      }
+        imagen: true,
+        calificacion: true,
+      },
+      orderBy: { calificacion: 'desc' }
     });
 
     const productosWithPrices = await Promise.all(
