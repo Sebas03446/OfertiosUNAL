@@ -91,13 +91,13 @@ function logout() {
         <ul
           :class="{ 'hidden': !isMenuOpen, 'flex': isMenuOpen, 'sm:flex': true, 'flex-col': true, 'sm:flex-row': true, 'space-y-4': true, 'sm:space-y-0': true, 'sm:space-x-4': true, 'mt-4': true, 'sm:mt-0': true, 'w-full': true, 'sm:w-auto': true }">
           <li>
-            <a href="/products" class="text-quaternary hover:text-tertiary">Productos</a>
+        <a href="/products" class="text-quaternary hover:text-tertiary">Productos</a>
           </li>
           <li>
-            <a href="/resetpassword" class="text-quaternary hover:text-tertiary">Cambiar Contraseña</a>
+        <a href="/resetpassword" class="text-quaternary hover:text-tertiary mr-4">Cambiar Contraseña</a>
           </li>
         </ul>
-        <button class="hidden bg-primary text-quaternary px-4 py-2 rounded hover:bg-tertiary transition-colors"
+        <button class="hidden sm:block bg-primary text-quaternary px-4 py-2 rounded hover:bg-tertiary transition-colors"
           @click="logout">
           Cerrar sesión
         </button>
