@@ -11,7 +11,26 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-onMounted(() => {
+const user = useSupabaseUser();
+
+onMounted(async () => {
+  if (user.value) {
+    const response = await useFetch("/api/user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: {
+        user_id: user.value.id,
+      },
+    });
+
+    await response.execute();
+
+    if (response.error.value) {
+      console.error("Error fetching user data");
+    }
+  }
   setTimeout(() => {
     router.push('/products');
   }, 6000);
