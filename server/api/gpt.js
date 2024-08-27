@@ -1,14 +1,14 @@
 import OpenAI from "openai";
 
-const configuration = {
-  apiKey: process.env.OPENAI_API_KEY,
-};
-const openai = new OpenAI(configuration);
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   const { nombre, imagen, precios } = body;
-
+  const configuration = {
+    apiKey: process.env.OPENAI_API_KEY,
+  };
+  const openai = new OpenAI(configuration);
+  
   try {
 
     const response = await openai.chat.completions.create({

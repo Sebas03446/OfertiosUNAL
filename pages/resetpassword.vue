@@ -57,7 +57,7 @@ function isValidPassword(password) {
             </div>
 
             <button type="submit"
-                class="w-full text-white bg-primary hover:bg-secondary focus:ring-4 focus:ring-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-50 disabled:cursor-not-allowed"
+                class="w-full text-white bg-primary hover:bg-quaternary focus:ring-4 focus:ring-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-50 disabled:cursor-not-allowed"
                 :disabled="!isValidPassword(password)">Restablecer contraseña</button>
 
             <div v-if="errorMsg" class="text-red-400 text-xs mt-4 text-center">{{ errorMsg }}</div>
@@ -67,4 +67,25 @@ function isValidPassword(password) {
 </template>
 
 <style scoped>
+input:focus {
+    border-color: #00e6dd; /* Tertiary color for focus border */
+    box-shadow: 0 0 0 3px rgba(0, 230, 221, 0.3); /* Tertiary color for focus ring */
+}
+
+button {
+    background-color: #283C3B; /* Primary color */
+    border-color: #283C3B;
+}
+
+button:hover {
+    background-color: #00e6dd; /* Tertiary color for hover effect */
+}
+
+.error-message {
+    color: #E65000; /* Quinary color for errors */
+}
+
+.success-message {
+    color: #30918D; /* Quaternary color for success messages */
+}
 </style>

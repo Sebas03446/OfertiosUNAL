@@ -35,7 +35,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-show="isLoading" class="flex justify-center items-center h-screen">
+  <div v-show="isLoading" class="flex justify-center items-center h-screen bg-primary">
       <Loading />
   </div>
   <div v-show="!isLoading" class="container mx-auto p-4">
@@ -48,8 +48,8 @@ onMounted(() => {
         :key="precio.nombreAlmacen"
         class="card bg-white border border-gray-200 rounded-lg m-4 p-4 shadow-lg flex flex-col items-center"
       >
-        <img :src="product?.imagen" alt="Product Image" class="object-contain h-40 w-full mb-4">
-        <h4 class="text-lg font-bold">{{ precio.nombreAlmacen }}</h4>
+        <img :src="product?.imagen" alt="Product Image" class="object-contain h-40 w-full mb-4 border border-quaternary">
+        <h4 class="text-lg font-bold text-primary">{{ precio.nombreAlmacen }}</h4>
         <p class="text-xl text-primary font-bold">{{ `$${parseInt(precio.precio).toLocaleString()}` }}</p>
       </div>
     </div>
@@ -61,5 +61,10 @@ onMounted(() => {
   width: 16rem;
   height: 24rem;
   @apply flex flex-col items-center justify-center;
+  border: 2px solid #30918D; /* Quaternary color for border */
+}
+
+.card img {
+  border-bottom: 2px solid #30918D; /* Quaternary color for image border */
 }
 </style>

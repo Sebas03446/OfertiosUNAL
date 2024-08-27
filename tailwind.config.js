@@ -6,8 +6,8 @@ export default {
       colors: {
         primary: "#283C3B",
         secondary: "#664533",
-        tertiary: "#30918D",
-        quaternary: "#00e6dd",
+        tertiary: "#00e6dd",
+        quaternary: "#30918D",
         quinary: "#E65000",
         senary: "#A65529",
       },
