@@ -18,7 +18,9 @@ const handleClick = () => {
 
 const formattedPrice = computed(() => {
   const price = parseInt(props.product.precio, 10).toLocaleString();
-  return `$${price}`;
+
+  /*DESCOMENTAR ESTO Y ARREGLAR LA QUERY PARA RECUPERAR LOS PRECIOS EN BUSQUEDA.JS EN LAS APIS, SI NO SE PUEDE MANO DEJAR COMENTADO*/
+  /*return `$${price}`;*/
 });
 </script>
 

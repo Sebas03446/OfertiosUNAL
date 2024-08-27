@@ -3,8 +3,8 @@
     <div class="flex flex-col lg:flex-row px-10 py-0 justify-center items-center lg:items-start">
       <div class="py-20 lg:py-40 flex flex-col items-center lg:items-start text-center lg:text-left">
         <h2 class="text-4xl mb-4">
-          <span class="text-quaternary">Realiza tus compras con</span>
-          <span class="text-primary text-5xl"> Datos</span>
+          <span class="text-primary">Realiza tus compras con</span>
+          <span class="text-quaternary text-5xl"> Datos</span>
         </h2>
         <p class="text-tertiary mb-4">
           Encuentra las mejores ofertas y compara precios en diversas tiendas
