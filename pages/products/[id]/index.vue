@@ -11,19 +11,19 @@ const paymentMethod = ref('mercadopago');
 const productDescription = ref("");
 const route = useRouter();
 
-
 const chartData = ref({
   labels: [],
   datasets: [
     {
       label: "Precio en el tiempo",
       data: [],
-      backgroundColor: "rgba(54, 162, 235, 0.6)",
-      borderColor: "rgba(54, 162, 235, 1)",
+      backgroundColor: "rgba(0, 230, 221, 0.6)",  // Color terciario
+      borderColor: "rgba(0, 230, 221, 1)",       // Color terciario
       borderWidth: 1,
     },
   ],
 });
+
 async function validatePremium() {
   const response = await useFetch("/api/user", {
     method: "GET",
@@ -44,7 +44,6 @@ async function validatePremium() {
   }
 }
 
-
 function goToCompare() {
   const product_id = route.currentRoute.value.params.id;
   navigateTo(`/products/${product_id}/comparator`);
@@ -60,8 +59,6 @@ async function fetchProductHistory() {
     },
   });
 
-  
-
   await response.execute();
 
   if (response.error.value) {
@@ -70,7 +67,7 @@ async function fetchProductHistory() {
   } else {
     product.value = response.data.value.producto;
     precios.value = response.data.value.precios;
-    if (isPremium.value){
+    if (isPremium.value) {
       await fetchProductDescription();
     }
     const labels = precios.value
@@ -88,8 +85,8 @@ async function fetchProductHistory() {
         {
           label: "Precio en el tiempo",
           data,
-          backgroundColor: "rgba(54, 162, 235, 0.6)",
-          borderColor: "rgba(54, 162, 235, 1)",
+          backgroundColor: "rgba(0, 230, 221, 0.6)",
+          borderColor: "rgba(0, 230, 221, 1)",
           borderWidth: 1,
         },
       ],
@@ -141,7 +138,6 @@ async function pay() {
   }
 }
 
-
 onMounted(() => {
   validatePremium();
   fetchProductHistory();
@@ -149,12 +145,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-col p-4">
+  <div class="flex flex-col p-4 bg-gradient-to-r from-primary via-tertiary to-secondary">
     <div v-show="isLoading" class="flex justify-center items-center h-screen">
       <Loading />
     </div>
     <div v-show="!isLoading" class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-      <div class="flex flex-col justify-center items-center mb-6 sm:mb-0">
+      <div class="flex flex-col justify-center items-center mb-6 sm:mb-0 bg-white p-4 rounded-lg shadow-lg">
         <h3 class="text-primary font-bold text-2xl mb-4 text-center">{{ product?.nombre }}</h3>
         <div class="w-32 h-32 bg-gray-200 rounded-lg flex items-center justify-center overflow-hidden">
           <img :src="product?.imagen" alt="Product Image" class="object-contain h-full w-full">
@@ -162,29 +158,28 @@ onMounted(() => {
         <button
           v-if="isPremium"
           @click="goToCompare"
-          class="mt-4 px-4 py-2 bg-tertiary text-white rounded-lg hover:bg-tertiary-dark transition disabled:bg-gray-300 disabled:cursor-not-allowed">
+          class="mt-4 px-4 py-2 bg-tertiary text-white rounded-lg hover:bg-quinary transition disabled:bg-gray-300 disabled:cursor-not-allowed">
           Comparar Precios
         </button>
         <button
           v-if="!isPremium"
           @click="pay"
           :disabled="pending"
-          class="mt-4 px-4 py-2 bg-tertiary text-white rounded-lg hover:bg-tertiary-dark transition disabled:bg-gray-300 disabled:cursor-not-allowed">
+          class="mt-4 px-4 py-2 bg-tertiary text-white rounded-lg hover:bg-quinary transition disabled:bg-gray-300 disabled:cursor-not-allowed">
           Suscribirse
         </button>
       </div>
       <div class="text-center justify-center sm:text-left p-5 w-80 break-words">
-        <p v-show="isPremium">{{ productDescription }}</p>
-        <p v-show="!isPremium" class="text-tertiary">Para ver la descripción completa, necesitas ser usuario premium</p>
+        <p v-show="isPremium" class="text-primary">{{ productDescription }}</p>
+        <p v-show="!isPremium" class="text-primary">Para ver la descripción completa, necesitas ser usuario premium</p>
       </div>
     </div>
 
-    <div class="w-full shadow-lg mt-6">
+    <div class="w-full shadow-lg mt-6 bg-white p-4 rounded-lg">
       <HistoryProduct :chartData="chartData" />
     </div>
   </div>
 </template>
-
 
 <style scoped lang="scss">
 .card {
@@ -194,5 +189,45 @@ onMounted(() => {
 
 .truncated-text {
   @apply truncate;
+}
+
+.bg-gradient {
+  background: linear-gradient(135deg, #283C3B 0%, #00e6dd 100%);
+}
+
+.text-primary {
+  color: #283C3B;
+}
+
+.text-secondary {
+  color: #664533;
+}
+
+.text-tertiary {
+  color: #00e6dd;
+}
+
+.text-quinary {
+  color: #E65000;
+}
+
+.bg-tertiary {
+  background-color: #00e6dd;
+}
+
+.bg-quinary {
+  background-color: #E65000;
+}
+
+.bg-primary {
+  background-color: #283C3B;
+}
+
+.bg-secondary {
+  background-color: #664533;
+}
+
+.border-primary {
+  border-color: #283C3B;
 }
 </style>

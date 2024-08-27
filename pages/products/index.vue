@@ -100,11 +100,11 @@
 
     <!-- Pagination -->
     <div class="flex justify-center mt-5">
-      <button class="mr-2" :disabled="currentPage === 1" @click="currentPage--">
+      <button class="bg-primary text-white py-2 px-4 rounded-md mr-2" :disabled="currentPage === 1" @click="currentPage--">
         Anterior
       </button>
-      <span>Pagina {{ currentPage }} de {{ totalPages }}</span>
-      <button class="ml-2" :disabled="currentPage === totalPages" @click="currentPage++">
+      <span class="text-primary mx-4">Página {{ currentPage }} de {{ totalPages }}</span>
+      <button class="bg-primary text-white py-2 px-4 rounded-md ml-2" :disabled="currentPage === totalPages" @click="currentPage++">
         Siguiente
       </button>
     </div>
@@ -207,24 +207,16 @@ function extractFilterOptions(products) {
   availableTiposDispositivo.value = [...new Set(products.map((p) => p.tipo_dispositivo))];
 }
 
-const showFilters = ref(false);
-
-const toggleFilters = () => {
-  showFilters.value = !showFilters.value;
-};
-
-onMounted(() => {
-  fetchProducts();
+onMounted(async () => {
+  await fetchProducts();
 });
+
+function toggleFilters() {
+  showFilters.value = !showFilters.value;
+}
 </script>
 
-<style scoped lang="scss">
-.card {
-  width: 16rem;
-  height: 24rem;
-}
-
-.truncated-text {
-  @apply truncate;
-}
+<style scoped>
+/* Custom CSS can go here */
 </style>
+
