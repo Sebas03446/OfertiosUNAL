@@ -87,6 +87,27 @@
       </div>
     </div>
 
+        <!-- Custom search suggestion section -->
+        <div class="flex flex-col items-center mt-8">
+      <p class="text-gray-600 text-lg mb-4">¿No encuentras lo que estabas buscando? Ingresa el producto que deseas aquí:</p>
+      
+      <!-- Custom Search Input -->
+      <div class="flex w-3/4 max-w-screen-md">
+        <input
+          v-model="customSearchQuery"
+          type="text"
+          placeholder="Describe el producto que buscas con la mejor oferta"
+          class="p-2 border border-gray-300 rounded-md w-full"
+        />
+        <button
+          @click="handleCustomSearch"
+          class="ml-2 p-2 bg-blue-500 text-white rounded-md"
+        >
+          Buscar
+        </button>
+      </div>
+    </div>
+
     <!-- Products list -->
     <div class="flex flex-wrap justify-center m-10">
       <CardsProduct
@@ -161,6 +182,12 @@ const handleSearch = async () => {
   );
 };
 
+const handleCustomSearch = () => {
+  if (customSearchQuery.value) {
+    // Redirect to another page or handle search with GPT
+    navigateTo(`/custom-search?query=${encodeURIComponent(customSearchQuery.value)}`);
+};
+}
 async function fetchProducts(
   query = '',
   marca = '',
@@ -199,6 +226,7 @@ async function fetchProducts(
   }
 }
 
+
 function extractFilterOptions(products) {
   availableMarcas.value = [...new Set(products.map((p) => p.marca))];
   availableMemorias.value = [...new Set(products.map((p) => p.memoria))];
@@ -217,6 +245,5 @@ function toggleFilters() {
 </script>
 
 <style scoped>
-/* Custom CSS can go here */
 </style>
 
