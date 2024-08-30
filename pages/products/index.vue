@@ -87,8 +87,8 @@
       </div>
     </div>
 
-        <!-- Custom search suggestion section -->
-        <div class="flex flex-col items-center mt-8">
+    <!-- Custom search suggestion section -->
+    <div class="flex flex-col items-center mt-8">
       <p class="text-gray-600 text-lg mb-4">¿No encuentras lo que estabas buscando? Ingresa el producto que deseas aquí:</p>
       
       <!-- Custom Search Input -->
@@ -134,6 +134,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
+import { navigateTo } from "nuxt/app";
 
 const products = ref([]);
 const fetching = ref(false);
@@ -154,6 +155,9 @@ const availableRams = ref([]);
 const availableProcesadores = ref([]);
 const availableTiposDispositivo = ref([]);
 
+const customSearchQuery = ref(""); // Added for custom search input
+const showFilters = ref(false); // For handling filter toggle in small screens
+
 const filteredProducts = computed(() => {
   return products.value;
 });
@@ -166,9 +170,17 @@ const paginatedProducts = computed(() => {
 
 const totalPages = computed(() => Math.ceil(filteredProducts.value.length / itemsPerPage));
 
+
+
 const onProductClicked = async (product) => {
-  navigateTo(`/products/${product.producto_id}`);
+  const productId = product.producto_id;
+  if (productId > 4000) {
+    navigateTo(`/products/${product.nombre}`);
+  } else {
+    navigateTo(`/products/${productId}`);
+  }
 };
+
 
 const handleSearch = async () => {
   console.log('Search Query:', searchQuery.value);
@@ -182,12 +194,34 @@ const handleSearch = async () => {
   );
 };
 
-const handleCustomSearch = () => {
+const handleCustomSearch = async () => {
   if (customSearchQuery.value) {
-    // Redirect to another page or handle search with GPT
-    navigateTo(`/custom-search?query=${encodeURIComponent(customSearchQuery.value)}`);
+    isLoading.value = true;
+    try {
+      const response = await fetch('/api/productos_ia', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query: customSearchQuery.value }),
+      });
+
+      if (!response.ok) {
+        console.error('Error fetching products from AI');
+        products.value = [];
+      } else {
+        const data = await response.json();
+        products.value = data;
+      }
+    } catch (error) {
+      console.error('Error fetching products from AI', error);
+      products.value = [];
+    } finally {
+      isLoading.value = false;
+    }
+  }
 };
-}
+
 async function fetchProducts(
   query = '',
   marca = '',
@@ -246,4 +280,3 @@ function toggleFilters() {
 
 <style scoped>
 </style>
-
